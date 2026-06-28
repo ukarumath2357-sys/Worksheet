@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>単体法 7日間練習問題</title>
+  <style>
+    body {
+      font-family: "Yu Gothic", "Meiryo", sans-serif;
+      background: #f6f8fb;
+      color: #1f2937;
+      margin: 0;
+      padding: 24px;
+      line-height: 1.8;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1d4ed8;
+      margin-bottom: 8px;
+    }
+
+    .lead {
+      text-align: center;
+      color: #4b5563;
+      margin-bottom: 32px;
+    }
+
+    .day-card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      border-left: 8px solid #2563eb;
+    }
+
+    .day-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #1e40af;
+      margin-bottom: 12px;
+    }
+
+    .problem-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 14px 0;
+    }
+
+    .hint {
+      background: #fefce8;
+      border-left: 5px solid #eab308;
+      padding: 12px 16px;
+      margin-top: 14px;
+      border-radius: 8px;
+    }
+
+    details {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-top: 16px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: #15803d;
+    }
+
+    .formula {
+      font-size: 1.1rem;
+      text-align: center;
+      margin: 12px 0;
+      font-weight: bold;
+    }
+
+    .answer {
+      color: #065f46;
+      font-weight: bold;
+    }
+
+    .steps {
+      background: #f9fafb;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-top: 10px;
+    }
+
+    .note {
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      padding: 16px;
+      border-radius: 10px;
+      margin-bottom: 28px;
+    }
+
+    code {
+      background: #e5e7eb;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 12px;
+      }
+      .day-card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>単体法 7日間練習問題</h1>
+    <p class="lead">1日1問ずつ、スラック変数・単体表・ピボット操作を練習します。</p>
+
+    <div class="note">
+      <strong>学習の進め方：</strong><br>
+      ① スラック変数を入れる<br>
+      ② 初期単体表を作る<br>
+      ③ z行で一番マイナスの大きい列を選ぶ<br>
+      ④ 比テストで出る変数を決める<br>
+      ⑤ ピボット操作をする<br>
+      ⑥ z行にマイナスがなくなれば終了
+    </div>
+
+    <div class="day-card">
+      <div class="day-title">Day 1：基本の最大化問題</div>
+      <div class="problem-box">
+        <div class="formula">最大化　z = 3x₁ + 2x₂</div>
+        <div class="formula">
+          x₁ + x₂ ≤ 4<br>
+          2x₁ + x₂ ≤ 6<br>
+          x₁, x₂ ≥ 0
+        </div>
+      </div>
+      <div class="hint">ヒント：まず s₁, s₂ を入れて等式に直しましょう。</div>
+      <details>
+        <summary>解答を見る</summary>
+        <div class="steps">
+          最適解は <span class="answer">x₁ = 2, x₂ = 2</span><br>
+          最大値は <span class="answer">z = 10</span>
+        </div>
+      </details>
+    </div>
+
+    <div class="day-card">
+      <div class="day-title">Day 2：係数が少し大きい問題</div>
+      <div class="problem-box">
+        <div class="formula">最大化　z = 5x₁ + 4x₂</div>
+        <div class="formula">
+          6x₁ + 4x₂ ≤ 24<br>
+          x₁ + 2x₂ ≤ 6<br>
+          x₁, x₂ ≥ 0
+        </div>
+      </div>
+      <div class="hint">ヒント：z行は -5, -4 から始めます。最初は x₁ が入る候補です。</div>
+      <details>
+        <summary>解答を見る</summary>
+        <div class="steps">
+          最適解は <span class="answer">x₁ = 3, x₂ = 1.5</span><br>
+          最大値は <span class="answer">z = 21</span>
+        </div>
+      </details>
+    </div>
+
+    <div class="day-card">
+      <div class="day-title">Day 3：制約条件が3本ある問題</div>
+      <div class="problem-box">
+        <div class="formula">最大化　z = 4x₁ + 3x₂</div>
+        <div class="formula">
+          x₁ + x₂ ≤ 5<br>
+          2x₁ + x₂ ≤ 8<br>
+          x₁ + 3x₂ ≤ 9<br>
+          x₁, x₂ ≥ 0
+        </div>
+      </div>
+      <div class="hint">ヒント：スラック変数は s₁, s₂, s₃ の3つです。</div>
+      <details>
+        <summary>解答を見る</summary>
+        <div class="steps">
+          最適解は <span class="answer">x₁ = 3, x₂ = 2</span><br>
+          最大値は <span class="answer">z = 18</span>
+        </div>
+      </details>
+    </div>
+
+    <div class="day-card">
+      <div class="day-title">Day 4：x₂から入る練習</div>
+      <div class="problem-box">
+        <div class="formula">最大化　z = 2x₁ + 5x₂</div>
+        <div class="formula">
+          x₁ + x₂ ≤ 6<br>
+          x₁ + 2x₂ ≤ 8<br>
+          3x₁ + 2x₂ ≤ 18<br>
+          x₁, x₂ ≥ 0
+        </div>
+      </div>
+      <div class="hint">ヒント：z行では -5 の方が大きくマイナスなので、最初は x₂ が入ります。</div>
+      <details>
+        <summary>解答を見る</summary>
+        <div class="steps">
+          最適解は <span class="answer">x₁ = 4, x₂ = 2</span><br>
+          最大値は <span class="answer">z = 18</span>
+        </div>
+      </details>
+    </div>
+
+    <div class="day-card">
+      <div class="day-title">Day 5：端の点が最適になる問題</div>
+      <div class="problem-box">
+        <div class="formula">最大化　z = 6x₁ + 2x₂</div>
+        <div class="formula">
+          x₁ + x₂ ≤ 7<br>
+          2x₁ + x₂ ≤ 10<br>
+          x₁ + 2x₂ ≤ 10<br>
+          x₁, x₂ ≥ 0
+        </div>
+      </div>
+      <div class="hint">ヒント：x₁の利益が大きいので、x₁方向に進む意識で表を見ましょう。</div>
+      <details>
+        <summary>解答を見る</summary>
+        <div class="steps">
+          最適解は <span class="answer">x₁ = 5, x₂ = 0</span><br>
+          最大値は <span class="answer">z = 30</span>
+        </div>
+      </details>
+    </div>
+
+    <div class="day-card">
+      <div class="day-title">Day 6：分数が出る問題</div>
+      <div class="problem-box">
+        <div class="formula">最大化　z = 7x₁ + 5x₂</div>
+        <div class="formula">
+          3x₁ + 2x₂ ≤ 18<br>
+          x₁ + 2x₂ ≤ 10<br>
+          x₁, x₂ ≥ 0
+        </div>
+      </div>
+      <div class="hint">ヒント：交点を求めると分数ではなく整数になりますが、単体表では途中で分数が出ます。</div>
+      <details>
+        <summary>解答を見る</summary>
+        <div class="steps">
+          最適解は <span class="answer">x₁ = 4, x₂ = 3</span><br>
+          最大値は <span class="answer">z = 43</span>
+        </div>
+      </details>
+    </div>
+
+    <div class="day-card">
+      <div class="day-title">Day 7：総合問題</div>
+      <div class="problem-box">
+        <div class="formula">最大化　z = 8x₁ + 6x₂</div>
+        <div class="formula">
+          2x₁ + x₂ ≤ 14<br>
+          x₁ + x₂ ≤ 10<br>
+          x₁ + 3x₂ ≤ 18<br>
+          x₁, x₂ ≥ 0
+        </div>
+      </div>
+      <div class="hint">ヒント：制約が3本あるので、比テストでどの行が先にぶつかるかを丁寧に見ましょう。</div>
+      <details>
+        <summary>解答を見る</summary>
+        <div class="steps">
+          最適解は <span class="answer">x₁ = 6, x₂ = 2</span><br>
+          最大値は <span class="answer">z = 60</span>
+        </div>
+      </details>
+    </div>
+
+  </div>
+</body>
+</html>
