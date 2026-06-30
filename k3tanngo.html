@@ -329,8 +329,25 @@ select:focus, input:focus {
 }
 .ranking-panel b { color: var(--main-dark); font-size: 1.05rem; }
 .ranking-panel p { margin: 4px 0 0; color: var(--sub); font-size: .84rem; font-weight: 800; }
-.ranking-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+.ranking-buttons { display: flex; gap: 8px; flex-wrap: wrap; align-items: end; }
 .ranking-buttons .btn { padding: 11px 14px; }
+.ranking-course {
+  display: grid;
+  gap: 4px;
+  min-width: 132px;
+  color: var(--sub);
+  font-size: .78rem;
+  font-weight: 900;
+}
+.ranking-course select {
+  min-width: 132px;
+  padding: 10px 12px;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--text);
+  font-weight: 900;
+}
 .ranking-status { display: none; margin: 16px 0 0; padding: 11px 14px; border-radius: 14px; background: #fff8dc; color: #9a6e0f; text-align: center; font-weight: 900; }
 .ranking-status.show { display: block; }
 .modal { display: none; position: fixed; z-index: 20; inset: 0; align-items: center; justify-content: center; padding: 18px; background: rgba(18, 92, 140, .35); }
@@ -364,6 +381,8 @@ select:focus, input:focus {
   .options, .list { grid-template-columns: 1fr; }
   .ranking-panel { align-items: stretch; }
   .ranking-buttons { display: grid; grid-template-columns: 1fr 1fr; }
+  .ranking-course { grid-column: 1 / -1; }
+  .ranking-course select { width: 100%; }
   .ranking-buttons .btn { width: 100%; }
   .ranking-row { grid-template-columns: 36px 1fr; }
   .ranking-score { grid-column: 2; text-align: left; }
@@ -423,10 +442,18 @@ select:focus, input:focus {
     <div class="ranking-panel" id="rankingPanel">
       <div>
         <b>🏆 ランキングに挑戦</b>
-        <p>1000問を重複なしで出題。1問10秒、途中終了は記録されません。</p>
+        <p>50・100・500・1000問から選択。全1000語からランダム・重複なしで出題し、コースごとにランキングを分けます。</p>
       </div>
       <div class="ranking-buttons">
-        <button class="btn primary" id="rankingChallengeBtn">1000問に挑戦</button>
+        <label class="ranking-course">挑戦する問題数
+          <select id="rankingQuestionCount" aria-label="ランキング挑戦の問題数">
+            <option value="50" selected>50問チャレンジ</option>
+            <option value="100">100問チャレンジ</option>
+            <option value="500">500問チャレンジ</option>
+            <option value="1000">1000問チャレンジ</option>
+          </select>
+        </label>
+        <button class="btn primary" id="rankingChallengeBtn">このコースに挑戦</button>
         <button class="btn" id="openRankingBtn">ランキングを見る</button>
       </div>
     </div>
@@ -491,11 +518,11 @@ select:focus, input:focus {
   <div class="modal" id="nicknameModal" role="dialog" aria-modal="true" aria-labelledby="nicknameTitle">
     <div class="modal-card">
       <button class="btn modal-close" data-close-modal="nicknameModal" aria-label="閉じる">×</button>
-      <h2 id="nicknameTitle">🏆 1000問チャレンジ</h2>
+      <h2 id="nicknameTitle">🏆 50問チャレンジ</h2>
       <p>ランキングに表示するニックネームを入力してください。<br>本名・学校名・連絡先などは入力しないでください。</p>
       <input class="modal-input" id="nicknameInput" maxlength="12" autocomplete="off" placeholder="例：まなぶ" aria-label="ニックネーム">
       <div class="form-error" id="nicknameError"></div>
-      <p>ルール：1000問を重複なしで出題／1問10秒／正解数が多い順、同点なら短時間の順です。</p>
+      <p id="nicknameRule">ルール：全1000語からランダム・重複なしで出題／1問10秒／正解数が多い順、同点なら短時間の順です。</p>
       <div class="actions-row">
         <button class="btn primary quiz-btn show" id="startRankingBtn">この名前で挑戦する</button>
       </div>
@@ -505,8 +532,8 @@ select:focus, input:focus {
   <div class="modal" id="rankingModal" role="dialog" aria-modal="true" aria-labelledby="rankingTitle">
     <div class="modal-card">
       <button class="btn modal-close" data-close-modal="rankingModal" aria-label="閉じる">×</button>
-      <h2 id="rankingTitle">🏆 1000問チャレンジ ランキング</h2>
-      <p>同じニックネームは、いちばんよい記録だけを表示します。</p>
+      <h2 id="rankingTitle">🏆 50問チャレンジ ランキング</h2>
+      <p id="rankingSubtitle">同じニックネームは、このコース内でいちばんよい記録だけを表示します。</p>
       <div id="rankingList" class="ranking-list"><div class="empty">読み込み中…</div></div>
     </div>
   </div>
@@ -1597,13 +1624,14 @@ const OLD_KEY = "kawaii_blue_english_1000";
   GASのウェブアプリURLを、デプロイ後に /exec まで含めて貼り付けてください。
   例: https://script.google.com/macros/s/AKfycb.../exec
 */
-const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbztUb8-y6cTvlgnv_0W7-UXBemEHhYWoonlusXE2jhpdD6nYKvSHE5BIesPnfObi0sNQw/exec";
-const RANKING_QUESTION_COUNT = 1000;
+const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxIi4y0FqvyhqWJXj2B3cWSD3CL30OdBrhwqpErayNfB7YBqpf0wp5aQ51M8Qd7TB4T7Q/exec";
+const RANKING_QUESTION_COUNTS = [50, 100, 500, 1000];
 const RANKING_TIME_LIMIT = 10;
 
 let rankingMode = false;
 let rankingAttempt = null;
 let rankingSubmitting = false;
+let rankingChallengeQuestionCount = 50;
 const state = { chapter: 1, current: 1, learned: [], weak: [], quizMode: "chapter", timeLimit: 15, quiz: null, all: false };
 
 let quizTimer = null;
@@ -1762,6 +1790,15 @@ function currentTimeLimit() {
   return rankingMode ? RANKING_TIME_LIMIT : state.timeLimit;
 }
 
+function getSelectedRankingQuestionCount() {
+  const value = Number($("#rankingQuestionCount").value);
+  return RANKING_QUESTION_COUNTS.includes(value) ? value : 50;
+}
+
+function rankingQuestionCountForDisplay() {
+  return rankingAttempt ? rankingAttempt.questionCount : getSelectedRankingQuestionCount();
+}
+
 function isGasConfigured() {
   return /^https:\/\/script\.google\.com\/macros\/s\/.+\/exec(?:\?.*)?$/i.test(GAS_WEB_APP_URL);
 }
@@ -1824,8 +1861,9 @@ function setRankingUi(active) {
   $("#rankingPanel").style.display = active ? "none" : "flex";
   $("#rankingQuitBtn").classList.toggle("show", active);
   $("#quizStartArea").style.display = active ? "none" : "block";
+  const questionCount = rankingQuestionCountForDisplay();
   $("#quizQuestionGuide").textContent = active
-    ? "1000問チャレンジ中。1問10秒、最後まで答えよう！"
+    ? `${questionCount}問チャレンジ中。全1000語からランダム・重複なし、1問10秒！`
     : "出題範囲と制限時間を選んで、スタートボタンを押そう！";
 }
 
@@ -1896,6 +1934,11 @@ async function requestRankingChallenge() {
     alert("先にHTML内の GAS_WEB_APP_URL へ、GASをウェブアプリとしてデプロイした /exec URL を貼り付けてください。");
     return;
   }
+
+  rankingChallengeQuestionCount = getSelectedRankingQuestionCount();
+  $("#nicknameTitle").textContent = `🏆 ${rankingChallengeQuestionCount}問チャレンジ`;
+  $("#nicknameRule").textContent =
+    `ルール：全1000語からランダム・重複なしで${rankingChallengeQuestionCount}問を出題／1問10秒／正解数が多い順、同点なら短時間の順です。`;
   $("#nicknameInput").value = "";
   $("#nicknameError").textContent = "";
   openModal("nicknameModal");
@@ -1904,7 +1947,9 @@ async function requestRankingChallenge() {
 
 async function startRankingChallenge() {
   const nickname = $("#nicknameInput").value.trim().replace(/\s+/g, " ");
+  const questionCount = rankingChallengeQuestionCount;
   const error = $("#nicknameError");
+
   if (!nickname) {
     error.textContent = "ニックネームを入力してください。";
     return;
@@ -1923,16 +1968,30 @@ async function startRankingChallenge() {
     const attemptId = (window.crypto && typeof window.crypto.randomUUID === "function")
       ? window.crypto.randomUUID()
       : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
-    const result = await jsonp("start", { attemptId });
+    const result = await jsonp("start", { attemptId, questionCount });
+    const confirmedQuestionCount = Number(result.questionCount);
+    if (!RANKING_QUESTION_COUNTS.includes(confirmedQuestionCount)) {
+      throw new Error("問題数の設定を確認できませんでした。もう一度お試しください。");
+    }
+
     rankingMode = true;
-    rankingAttempt = { nickname, token: result.token, attemptId };
+    rankingAttempt = {
+      nickname,
+      token: result.token,
+      attemptId,
+      questionCount: confirmedQuestionCount
+    };
     qCount = 0;
     qCorrect = 0;
-    qMax = RANKING_QUESTION_COUNT;
-    quizQueue = shuffle(WORDS);
+    qMax = confirmedQuestionCount;
+
+    // 全1000語をシャッフルして、選んだ問題数だけ取り出す。
+    // 同じ挑戦の中では同じ単語が2回出ません。
+    quizQueue = shuffle(WORDS).slice(0, confirmedQuestionCount);
+
     clearQuizTimer();
     setRankingUi(true);
-    showRankingStatus(`🏆 ${nickname} さんが1000問チャレンジに挑戦中です`);
+    showRankingStatus(`🏆 ${nickname} さんが${confirmedQuestionCount}問チャレンジに挑戦中です`);
     $("#quizResultArea").style.display = "none";
     $("#quizPlayArea").style.display = "block";
     closeModal("nicknameModal");
@@ -1947,7 +2006,8 @@ async function startRankingChallenge() {
 
 function abandonRankingChallenge() {
   if (!rankingMode) return;
-  if (!confirm("1000問チャレンジを中断しますか？\n途中の記録はランキングへ保存されません。")) return;
+  const questionCount = rankingAttempt ? rankingAttempt.questionCount : rankingChallengeQuestionCount;
+  if (!confirm(`${questionCount}問チャレンジを中断しますか？\n途中の記録はランキングへ保存されません。`)) return;
   rankingMode = false;
   rankingAttempt = null;
   clearQuizTimer();
@@ -1977,7 +2037,7 @@ function newQuiz() {
 
   qCount++;
   if (rankingMode) {
-    $("#quizProgressText").textContent = `🏆 第 ${qCount} 問 / 全 1000 問`;
+    $("#quizProgressText").textContent = `🏆 第 ${qCount} 問 / 全 ${qMax} 問`;
   } else if (qMax !== Infinity) {
     $("#quizProgressText").textContent = `☁️ 第 ${qCount} 問 / 全 ${qMax} 問 ☁️`;
   } else {
@@ -2065,7 +2125,7 @@ function finishQuiz(right, clicked, timedOut) {
 
 async function showQuizResult() {
   clearQuizTimer();
-  if (rankingMode && qCount < RANKING_QUESTION_COUNT) return;
+  if (rankingMode && qCount < qMax) return;
   $("#quizPlayArea").style.display = "none";
   $("#quizResultArea").style.display = "block";
   $("#rankingSaving").classList.remove("show");
@@ -2087,8 +2147,10 @@ async function showQuizResult() {
     return;
   }
 
-  $("#quizResultTitle").textContent = "🏆 1000問チャレンジ完走！";
-  resText.innerHTML = `${escapeHtml(rankingAttempt.nickname)} さんは、<br><span style="color:var(--main); font-size:2rem;">${qCorrect} / 1000問</span> 正解！`;
+  const questionCount = rankingAttempt.questionCount;
+  $("#quizResultTitle").textContent = `🏆 ${questionCount}問チャレンジ完走！`;
+  resText.innerHTML = `${escapeHtml(rankingAttempt.nickname)} さんは、<br><span style="color:var(--main); font-size:2rem;">${qCorrect} / ${questionCount}問</span> 正解！`;
+  $("#rankingRetry").textContent = `${questionCount}問にもう一度挑戦`;
   await submitRankingResult();
 }
 
@@ -2104,7 +2166,8 @@ async function submitRankingResult() {
       token: rankingAttempt.token,
       attemptId: rankingAttempt.attemptId,
       nickname: rankingAttempt.nickname,
-      score: qCorrect
+      score: qCorrect,
+      questionCount: rankingAttempt.questionCount
     });
     saving.textContent = `ランキングへ記録しました！ 記録時間：${formatDuration(result.record.durationMs)}`;
     showRankingStatus(`🏆 ${rankingAttempt.nickname} さんの結果をランキングに記録しました`);
@@ -2116,21 +2179,26 @@ async function submitRankingResult() {
 }
 
 async function openRanking() {
+  const questionCount = rankingQuestionCountForDisplay();
+  $("#rankingTitle").textContent = `🏆 ${questionCount}問チャレンジ ランキング`;
+  $("#rankingSubtitle").textContent =
+    `同じニックネームは、この${questionCount}問コース内でいちばんよい記録だけを表示します。`;
   openModal("rankingModal");
+
   const list = $("#rankingList");
   list.innerHTML = `<div class="empty">読み込み中…</div>`;
   try {
-    const result = await jsonp("ranking");
-    renderRanking(result.rankings || []);
+    const result = await jsonp("ranking", { questionCount });
+    renderRanking(result.rankings || [], questionCount);
   } catch (err) {
     list.innerHTML = `<div class="empty">ランキングを読み込めませんでした。<br>${escapeHtml(err.message || "GASの設定を確認してください。")}</div>`;
   }
 }
 
-function renderRanking(records) {
+function renderRanking(records, questionCount) {
   const list = $("#rankingList");
   if (!records.length) {
-    list.innerHTML = `<div class="empty">まだ記録がありません。<br>最初の挑戦者になろう！</div>`;
+    list.innerHTML = `<div class="empty">まだ${questionCount}問コースの記録がありません。<br>最初の挑戦者になろう！</div>`;
     return;
   }
   list.innerHTML = records.map((record, index) => {
@@ -2139,7 +2207,7 @@ function renderRanking(records) {
     return `<div class="ranking-row${top}">
       <div class="ranking-rank">${medal}</div>
       <div class="ranking-name">${escapeHtml(record.nickname)}</div>
-      <div class="ranking-score">${record.score} / 1000<br><small>${formatDuration(record.durationMs)}</small></div>
+      <div class="ranking-score">${record.score} / ${questionCount}<br><small>${formatDuration(record.durationMs)}</small></div>
     </div>`;
   }).join("");
 }
@@ -2175,7 +2243,7 @@ function renderList() {
 
 function showPage(page) {
   if (rankingMode && page !== "quiz") {
-    if (!confirm("ランキング挑戦を中断しますか？\n途中の記録はランキングへ保存されません。")) return;
+    if (!confirm(`${rankingQuestionCountForDisplay()}問チャレンジを中断しますか？\n途中の記録はランキングへ保存されません。`)) return;
     rankingMode = false;
     rankingAttempt = null;
     state.quiz = null;
@@ -2218,6 +2286,9 @@ $("#speak").onclick = speak;
 $("#weakBtn").onclick = () => mark("weak");
 $("#learnBtn").onclick = () => mark("learn");
 $("#nextBtn").onclick = next;
+$("#rankingQuestionCount").onchange = () => {
+  rankingChallengeQuestionCount = getSelectedRankingQuestionCount();
+};
 $("#quizStartBtn").onclick = startQuizSession;
 $("#quizNext").onclick = newQuiz;
 $("#quizFinishBtn").onclick = () => { if (!rankingMode) showQuizResult(); };
