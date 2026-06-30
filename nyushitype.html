@@ -3,256 +3,153 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>福大・九産大｜入試を一目で 2027年度</title>
+<title>福大・九産大｜学べること・将来・入試 2027</title>
 <style>
 :root{
-  --ink:#1d2738;
-  --muted:#68758a;
+  --ink:#1b273a;
+  --muted:#64728a;
   --line:#dce3ec;
-  --bg:#f4f7fb;
-  --card:#ffffff;
-  --fu-human:#2669c7;
-  --fu-commerce:#e16f17;
-  --ksu-intl:#7650b2;
-  --ksu-commerce:#108066;
-  --soft-blue:#edf5ff;
-  --soft-orange:#fff2e7;
-  --soft-purple:#f5effd;
-  --soft-green:#eaf9f3;
-  --soft-gray:#f4f6f9;
-  --shadow:0 9px 24px rgba(23,39,64,.08);
+  --bg:#f5f7fb;
+  --white:#fff;
+  --fu-human:#2c6cc7;
+  --fu-human-soft:#edf5ff;
+  --fu-commerce:#db6c18;
+  --fu-commerce-soft:#fff1e6;
+  --ksu-intl:#7450b0;
+  --ksu-intl-soft:#f5effd;
+  --ksu-commerce:#0e7e66;
+  --ksu-commerce-soft:#eaf9f3;
+  --warn:#9b6900;
+  --warn-soft:#fff6df;
+  --shadow:0 10px 24px rgba(24,39,63,.08);
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-  margin:0;
-  color:var(--ink);
-  background:var(--bg);
+  margin:0;background:var(--bg);color:var(--ink);line-height:1.55;
   font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,sans-serif;
-  line-height:1.55;
 }
-.wrap{width:min(1100px,calc(100% - 28px));margin:auto}
+.wrap{width:min(1110px,calc(100% - 28px));margin:auto}
 .hero{
-  padding:36px 0 27px;
-  background:linear-gradient(120deg,#edf5ff,#fff7ed 54%,#effaf6);
+  padding:37px 0 27px;
+  background:linear-gradient(120deg,#edf5ff,#fff8ed 53%,#effaf5);
   border-bottom:1px solid var(--line);
 }
 .eyebrow{
-  display:inline-block;
-  padding:5px 10px;
-  border:1px solid var(--line);
-  border-radius:999px;
-  background:#fff;
-  font-size:.8rem;
-  font-weight:800;
+  display:inline-block;padding:5px 10px;border-radius:999px;background:#fff;
+  border:1px solid var(--line);font-size:.8rem;font-weight:850;color:#4c5b70;
 }
-h1{
-  margin:11px 0 7px;
-  font-size:clamp(1.8rem,5vw,3rem);
-  line-height:1.18;
-  letter-spacing:-.05em;
-}
+h1{margin:11px 0 7px;font-size:clamp(1.85rem,5vw,3.1rem);line-height:1.18;letter-spacing:-.055em}
 .hero p{margin:0;color:var(--muted);font-size:1rem}
-main{padding:22px 0 56px}
-.guide{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin:0 0 19px;
+main{padding:22px 0 58px}
+.start{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 19px;
 }
-.guide div{
-  border:1px solid var(--line);
-  background:#fff;
-  border-radius:13px;
-  padding:11px 13px;
-  box-shadow:var(--shadow);
-  font-size:.9rem;
+.start div{
+  background:#fff;border:1px solid var(--line);border-radius:13px;padding:12px 14px;
+  box-shadow:var(--shadow);font-size:.9rem;
 }
-.guide b{display:block;font-size:1rem;margin-bottom:2px}
+.start b{display:block;font-size:1rem;margin-bottom:2px}
 .tabs{
-  display:flex;
-  gap:8px;
-  overflow-x:auto;
-  padding:2px 0 11px;
-  border-bottom:1px solid var(--line);
-  scrollbar-width:thin;
+  display:flex;gap:8px;overflow-x:auto;padding:2px 0 11px;
+  border-bottom:1px solid var(--line);scrollbar-width:thin;
 }
 .tab{
-  border:1px solid var(--line);
-  border-radius:12px;
-  padding:11px 14px;
-  background:#fff;
-  color:#4c5b70;
-  font:800 .9rem/1.1 inherit;
-  white-space:nowrap;
-  cursor:pointer;
+  appearance:none;border:1px solid var(--line);border-radius:12px;background:#fff;color:#4d5d73;
+  padding:11px 14px;white-space:nowrap;font:850 .9rem/1.1 inherit;cursor:pointer;
 }
-.tab[aria-selected="true"]{
-  color:#fff;
-  background:#214f91;
-  border-color:#214f91;
-}
+.tab[aria-selected="true"]{color:#fff;background:#235a9f;border-color:#235a9f}
 .panel{display:none;padding-top:23px}
 .panel.active{display:block}
-.panel-top{
-  display:flex;
-  justify-content:space-between;
-  align-items:flex-start;
-  gap:16px;
-  margin-bottom:16px;
-}
-h2{
-  margin:0 0 4px;
-  font-size:clamp(1.4rem,3vw,1.9rem);
-  line-height:1.25;
-  letter-spacing:-.035em;
-}
+.panel-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:15px}
+h2{margin:0 0 4px;font-size:clamp(1.45rem,3vw,1.95rem);line-height:1.24;letter-spacing:-.04em}
+h3{margin:0 0 5px;font-size:1.06rem;line-height:1.32}
 .sub{margin:0;color:var(--muted)}
-.big-note{
-  max-width:360px;
-  padding:10px 12px;
-  border-radius:12px;
-  background:#fff7df;
-  border:1px solid #ecd188;
-  font-size:.88rem;
-  font-weight:800;
+.pill{
+  max-width:370px;padding:10px 12px;border-radius:12px;
+  font-size:.88rem;font-weight:850;background:var(--warn-soft);border:1px solid #ead18c;
 }
-.exam-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:13px;
+.section-title{margin:25px 0 10px;font-size:1.14rem;font-weight:900}
+.card-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.card{
+  background:var(--white);border:1px solid var(--line);border-radius:16px;padding:16px;
+  box-shadow:var(--shadow);
 }
+.card.fuh{border-top:6px solid var(--fu-human)}
+.card.fuc{border-top:6px solid var(--fu-commerce)}
+.card.ksi{border-top:6px solid var(--ksu-intl)}
+.card.ksc{border-top:6px solid var(--ksu-commerce)}
+.card p{margin:0;color:#405067;font-size:.9rem}
+.icon{
+  display:inline-grid;place-items:center;width:31px;height:31px;border-radius:10px;
+  font-size:.82rem;font-weight:900;margin-bottom:9px;
+}
+.fuh .icon{background:var(--fu-human-soft);color:var(--fu-human)}
+.fuc .icon{background:var(--fu-commerce-soft);color:#b85308}
+.ksi .icon{background:var(--ksu-intl-soft);color:var(--ksu-intl)}
+.ksc .icon{background:var(--ksu-commerce-soft);color:var(--ksu-commerce)}
+.fit{
+  margin-top:13px;padding:13px 15px;border-radius:14px;background:#fff;border:1px solid var(--line);
+  box-shadow:var(--shadow);font-size:.92rem;
+}
+.fit b{margin-right:7px}
+.note{
+  margin-top:13px;padding:12px 14px;border-radius:13px;background:var(--warn-soft);
+  border:1px solid #ead18c;color:#5c4a20;font-size:.87rem;
+}
+.exam-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 .exam{
-  position:relative;
-  overflow:hidden;
-  padding:17px;
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:16px;
-  box-shadow:var(--shadow);
+  position:relative;overflow:hidden;padding:16px;background:#fff;border:1px solid var(--line);
+  border-radius:16px;box-shadow:var(--shadow);
 }
-.exam::before{
-  content:"";
-  position:absolute;top:0;left:0;right:0;height:6px;
-  background:#6383aa;
-}
-.exam.total::before{background:var(--fu-commerce)}
-.exam.rec::before{background:#23815d}
-.exam.general::before{background:var(--fu-human)}
-.exam.ct::before{background:#805dbb}
-.exam.late::before{background:#68758a}
-.exam.wait::before{background:#bf4c4c}
+.exam:before{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:#6e849e}
+.exam.total:before{background:var(--fu-commerce)}
+.exam.recommend:before{background:#25805d}
+.exam.general:before{background:#2b68bf}
+.exam.common:before{background:#7c5ab4}
+.exam.late:before{background:#68758a}
+.exam.wait:before{background:#bf4a4a}
 .tag{
-  display:inline-block;
-  padding:3px 7px;
-  border-radius:999px;
-  background:var(--soft-gray);
-  color:#4f5f74;
-  font-size:.75rem;
-  font-weight:900;
+  display:inline-block;padding:3px 7px;border-radius:999px;background:#f3f5f8;color:#526174;
+  font-size:.74rem;font-weight:900;
 }
-.exam h3{
-  margin:9px 0 5px;
-  font-size:1.15rem;
-  line-height:1.25;
+.exam h3{margin:9px 0 5px;font-size:1.13rem}
+.exam .what{min-height:45px;margin:0 0 11px;color:#405067;font-size:.91rem}
+.date{
+  padding-top:10px;border-top:1px dashed var(--line);font-size:.86rem;
 }
-.what{
-  min-height:48px;
-  margin:0 0 12px;
-  color:#3c4b60;
-  font-size:.93rem;
-}
-.datebox{
-  border-top:1px dashed var(--line);
-  padding-top:10px;
-  font-size:.88rem;
-}
-.datebox div+div{margin-top:5px}
-.datebox span{
-  display:inline-block;
-  min-width:44px;
-  color:var(--muted);
-  font-size:.78rem;
-  font-weight:800;
-}
+.date div+div{margin-top:4px}
+.date span{display:inline-block;min-width:44px;color:var(--muted);font-size:.77rem;font-weight:900}
 .alert{
-  margin-top:18px;
-  padding:15px 16px;
-  border-radius:15px;
-  background:#fff;
-  border:1px solid var(--line);
-  box-shadow:var(--shadow);
+  margin-top:14px;padding:14px 15px;border:1px solid var(--line);border-radius:15px;background:#fff;
+  box-shadow:var(--shadow);font-size:.91rem;
 }
-.alert b{display:block;margin-bottom:3px}
-.alert p{margin:0;color:var(--muted);font-size:.9rem}
-.next{
-  margin-top:28px;
-  padding:19px;
-  border-radius:17px;
-  background:#fff;
-  border:1px solid var(--line);
-  box-shadow:var(--shadow);
+.alert b{display:block;margin-bottom:2px}
+.alert p{margin:0;color:var(--muted)}
+.wait-box{
+  margin-top:3px;padding:18px;border:1px solid #efc3c3;border-radius:16px;background:#fff7f7;
 }
-.next h2{font-size:1.28rem}
-.steps{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-  margin-top:12px;
-}
-.step{
-  padding:13px;
-  border-radius:13px;
-  background:#f8fafc;
-  border:1px solid #e4e9f0;
-  font-size:.9rem;
-}
-.no-data{
-  padding:21px;
-  border-radius:17px;
-  background:#fff7f7;
-  border:1px solid #efc3c3;
-}
-.no-data h3{margin:0 0 5px;font-size:1.2rem}
-.no-data p{margin:0;color:#6e5353}
-.status-list{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:12px;
-  margin-top:15px;
-}
-.status{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:15px;
-  padding:15px;
-  box-shadow:var(--shadow);
-}
-.status h3{margin:0 0 5px}
-.status p{margin:0;color:var(--muted);font-size:.9rem}
+.wait-box h3{font-size:1.14rem}
+.wait-box p{margin:0;color:#6d5656;font-size:.91rem}
 .footer{
-  margin-top:34px;
-  padding-top:17px;
-  border-top:1px solid var(--line);
-  color:var(--muted);
-  font-size:.8rem;
+  margin-top:32px;padding-top:17px;border-top:1px solid var(--line);
+  font-size:.8rem;color:var(--muted);
 }
-.footer a{color:#175fae}
+.footer a{color:#1a5fae}
 @media(max-width:820px){
-  .exam-grid{grid-template-columns:repeat(2,1fr)}
+  .card-grid,.exam-grid{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:600px){
-  .wrap{width:min(100% - 22px,1100px)}
+  .wrap{width:min(100% - 22px,1110px)}
   .hero{padding:28px 0 23px}
-  .guide,.exam-grid,.status-list,.steps{grid-template-columns:1fr}
+  .start,.card-grid,.exam-grid{grid-template-columns:1fr}
   .panel-top{display:block}
-  .big-note{margin-top:11px;max-width:none}
-  .exam{padding:16px}
+  .pill{max-width:none;margin-top:11px}
+  .card,.exam{padding:15px}
 }
 @media print{
-  body{background:#fff}
-  .tabs{display:none}
-  .panel{display:block!important;page-break-after:always}
-  .exam,.guide div,.alert,.next,.status{box-shadow:none}
+  body{background:#fff}.tabs{display:none}.panel{display:block!important;page-break-after:always}
+  .card,.exam,.start div,.fit,.alert{box-shadow:none}
 }
 </style>
 </head>
@@ -260,96 +157,105 @@ h2{
 <header class="hero">
   <div class="wrap">
     <span class="eyebrow">2027年度入試向け</span>
-    <h1>入試を一目で見よう</h1>
-    <p>「何をする？」「いつ？」だけに絞った、福大・九産大の入試メモです。</p>
+    <h1>大学で何をする？<br>卒業後は？ 入試は？</h1>
+    <p>タブを押すと、学部ごとの「面白い授業・将来・入試」が見られます。</p>
   </div>
 </header>
 
 <main class="wrap">
-  <section class="guide" aria-label="入試方式の簡単な説明">
-    <div><b>総合型</b>資格・活動・やる気を使う</div>
-    <div><b>推薦</b>高校の先生から推薦をもらう</div>
-    <div><b>一般</b>学力テストで受ける</div>
+  <section class="start">
+    <div><b>1．学べること</b>授業や体験が楽しそうか</div>
+    <div><b>2．将来</b>気になる仕事につながりそうか</div>
+    <div><b>3．入試</b>自分が使える受け方があるか</div>
   </section>
 
-  <div class="tabs" role="tablist" aria-label="学部を選ぶ">
+  <nav class="tabs" role="tablist" aria-label="学部を選ぶ">
     <button class="tab" role="tab" aria-selected="true" aria-controls="human" id="tab-human" data-target="human">福大 人文学部</button>
     <button class="tab" role="tab" aria-selected="false" aria-controls="commerce" id="tab-commerce" data-target="commerce">福大 商学部</button>
     <button class="tab" role="tab" aria-selected="false" aria-controls="intl" id="tab-intl" data-target="intl">九産大 国際文化</button>
     <button class="tab" role="tab" aria-selected="false" aria-controls="ksu-commerce" id="tab-ksu-commerce" data-target="ksu-commerce">九産大 商学部</button>
-  </div>
+  </nav>
 
   <!-- 福大 人文 -->
   <section class="panel active" id="human" role="tabpanel" aria-labelledby="tab-human">
     <div class="panel-top">
       <div>
         <h2>福大 人文学部</h2>
-        <p class="sub">文化・歴史・日本語日本文・心理教育・語学など</p>
+        <p class="sub">文化・歴史・日本語日本文学・教育心理・語学などから選べる</p>
       </div>
-      <div class="big-note">総合型はありません。<br>推薦か一般で受ける学部です。</div>
+      <div class="pill">「人」や「文化」が好きな人向け。<br>学科によって中身がかなり違う。</div>
     </div>
 
+    <div class="section-title">大学でこんなことができる</div>
+    <div class="card-grid">
+      <article class="card fuh">
+        <span class="icon">文化</span>
+        <h3>世界の文化や心理を調べる</h3>
+        <p>哲学・美術・社会・心理などを学ぶ。現地調査、アンケート、インタビューも行う。</p>
+      </article>
+      <article class="card fuh">
+        <span class="icon">歴史</span>
+        <h3>遺跡を本当に調べる</h3>
+        <p>考古学では遺跡の現地調査や、土器・石器を整理する体験もある。</p>
+      </article>
+      <article class="card fuh">
+        <span class="icon">言葉</span>
+        <h3>小説・方言・日本語教育</h3>
+        <p>文学を読むだけでなく、外国人にも伝わる「やさしい日本語」も学べる。</p>
+      </article>
+    </div>
+
+    <div class="section-title">卒業後に目指しやすい方向</div>
+    <div class="card-grid">
+      <article class="card fuh">
+        <span class="icon">先生</span>
+        <h3>教育・日本語教育</h3>
+        <p>中高の先生、日本語教師、教育関係の仕事など。</p>
+      </article>
+      <article class="card fuh">
+        <span class="icon">文化</span>
+        <h3>出版・広報・文化の仕事</h3>
+        <p>文章力や調べる力を生かして、広報、企画、出版、文化施設などへ。</p>
+      </article>
+      <article class="card fuh">
+        <span class="icon">社会</span>
+        <h3>一般企業・公務員</h3>
+        <p>旅行・航空、金融、IT、行政など、幅広い仕事を目指せる。</p>
+      </article>
+    </div>
+    <div class="fit"><b>向いている人：</b>国語・歴史・心理・外国語が好き。人や社会、文化を「なんで？」と深く考えるのが好き。</div>
+    <div class="note">※公認心理師を目指す場合は、大学で必要科目を学んだ後に大学院進学などの条件があります。</div>
+
+    <div class="section-title">入試はこう見る</div>
+    <div class="note">※ ここに載せているのは、九州産業大学全体の入試日程です。国際文化学部・商学部で実際に使える方式、試験科目、評定条件、併願の可否は、学部別の募集要項で最終確認してください。</div>
     <div class="exam-grid">
-      <article class="exam rec">
-        <span class="tag">推薦</span>
-        <h3>A方式推薦</h3>
+      <article class="exam recommend">
+        <span class="tag">推薦</span><h3>A方式推薦</h3>
         <p class="what">英語 ＋ 国語 ＋ 面接</p>
-        <div class="datebox">
-          <div><span>出願</span>11/1〜11/10</div>
-          <div><span>試験</span>11/29</div>
-          <div><span>発表</span>12/9</div>
-        </div>
+        <div class="date"><div><span>出願</span>11/1〜11/10</div><div><span>試験</span>11/29</div><div><span>発表</span>12/9</div></div>
       </article>
-
       <article class="exam general">
-        <span class="tag">一般</span>
-        <h3>系統別日程</h3>
+        <span class="tag">一般</span><h3>系統別</h3>
         <p class="what">3科目。<br>得意科目を生かしやすい。</p>
-        <div class="datebox">
-          <div><span>出願</span>12/18〜1/12</div>
-          <div><span>試験</span>2/2</div>
-          <div><span>発表</span>2/23</div>
-        </div>
+        <div class="date"><div><span>出願</span>12/18〜1/12</div><div><span>試験</span>2/2</div><div><span>発表</span>2/23</div></div>
       </article>
-
       <article class="exam general">
-        <span class="tag">一般</span>
-        <h3>前期日程</h3>
+        <span class="tag">一般</span><h3>前期</h3>
         <p class="what">3科目。<br>いちばん標準的な受け方。</p>
-        <div class="datebox">
-          <div><span>出願</span>12/18〜1/12</div>
-          <div><span>試験</span>2/3〜2/6・2/11</div>
-          <div><span>発表</span>2/23</div>
-        </div>
+        <div class="date"><div><span>出願</span>12/18〜1/12</div><div><span>試験</span>2/3〜2/6</div><div><span>発表</span>2/23</div></div>
       </article>
-
-      <article class="exam ct">
-        <span class="tag">共通テスト</span>
-        <h3>共テ利用</h3>
-        <p class="what">共通テストの点だけで判定。<br>福大で試験は受けない。</p>
-        <div class="datebox">
-          <div><span>共テ</span>1/16・1/17</div>
-          <div><span>締切</span>Ⅰ期 1/12 ／ Ⅱ期 1/20</div>
-          <div><span>発表</span>2/23</div>
-        </div>
+      <article class="exam common">
+        <span class="tag">共通テスト</span><h3>共テ利用</h3>
+        <p class="what">共テの点で判定。<br>福大で試験は受けない。</p>
+        <div class="date"><div><span>共テ</span>1/16・1/17</div><div><span>締切</span>Ⅰ期 1/12／Ⅱ期 1/20</div><div><span>発表</span>2/23</div></div>
       </article>
-
       <article class="exam late">
-        <span class="tag">一般</span>
-        <h3>後期日程</h3>
+        <span class="tag">一般</span><h3>後期</h3>
         <p class="what">2科目。<br>3月の最後のチャンス。</p>
-        <div class="datebox">
-          <div><span>出願</span>2/15〜2/25</div>
-          <div><span>試験</span>3/4</div>
-          <div><span>発表</span>3/13</div>
-        </div>
+        <div class="date"><div><span>出願</span>2/15〜2/25</div><div><span>試験</span>3/4</div><div><span>発表</span>3/13</div></div>
       </article>
     </div>
-
-    <div class="alert">
-      <b>人文学部でまず考えること</b>
-      <p>学校から推薦を出してもらえそうなら「A方式推薦」。そうでなければ「系統別＋前期＋共テ利用」を中心に考える。</p>
-    </div>
+    <div class="alert"><b>入試のポイント</b><p>人文学部は総合型選抜がありません。推薦を使うならA方式、学力で受けるなら系統別・前期・共テ利用を中心に考える。</p></div>
   </section>
 
   <!-- 福大 商 -->
@@ -359,82 +265,83 @@ h2{
         <h2>福大 商学部</h2>
         <p class="sub">商・経営・貿易・会計専門職プログラム</p>
       </div>
-      <div class="big-note">英検・簿記などの資格があるなら、<br>最初に総合型をチェック。</div>
+      <div class="pill">「会社・お店・商品・お金」が好きな人向け。<br>資格を使う総合型もある。</div>
     </div>
 
+    <div class="section-title">大学でこんなことができる</div>
+    <div class="card-grid">
+      <article class="card fuc">
+        <span class="icon">商品</span>
+        <h3>売れる仕組みを考える</h3>
+        <p>お店や企業をテーマに、マーケティング、流通、情報、金融などを学ぶ。</p>
+      </article>
+      <article class="card fuc">
+        <span class="icon">海外</span>
+        <h3>海外の企業や大学を訪ねる</h3>
+        <p>海外交流ゼミでは、事前学習の後に現地で企業・大学を見学して学ぶ。</p>
+      </article>
+      <article class="card fuc">
+        <span class="icon">会計</span>
+        <h3>簿記や会計を本気で学ぶ</h3>
+        <p>会計専門職プログラムでは、公認会計士・税理士を目標にする道もある。</p>
+      </article>
+    </div>
+
+    <div class="section-title">卒業後に目指しやすい方向</div>
+    <div class="card-grid">
+      <article class="card fuc">
+        <span class="icon">企画</span>
+        <h3>商品企画・広告・営業</h3>
+        <p>メーカー、小売、広告などで、商品を売る・広める仕事。</p>
+      </article>
+      <article class="card fuc">
+        <span class="icon">お金</span>
+        <h3>銀行・保険・会計</h3>
+        <p>金融、保険、経理、会計の専門職など。</p>
+      </article>
+      <article class="card fuc">
+        <span class="icon">世界</span>
+        <h3>物流・貿易・国際ビジネス</h3>
+        <p>海外とつながる商品や物流を扱う仕事など。</p>
+      </article>
+    </div>
+    <div class="fit"><b>向いている人：</b>SNS広告や商品、会社経営、簿記、お金の流れに興味がある。将来は企業で働きたい・資格も取りたい。</div>
+
+    <div class="section-title">入試はこう見る</div>
+    <div class="note">※ ここに載せているのは、九州産業大学全体の入試日程です。国際文化学部・商学部で実際に使える方式、試験科目、評定条件、併願の可否は、学部別の募集要項で最終確認してください。</div>
     <div class="exam-grid">
       <article class="exam total">
-        <span class="tag">総合型</span>
-        <h3>総合型選抜</h3>
+        <span class="tag">総合型</span><h3>総合型</h3>
         <p class="what">資格・活動の書類<br>→ 面接 ＋ 小論文</p>
-        <div class="datebox">
-          <div><span>出願</span>9/1〜9/7</div>
-          <div><span>1次</span>書類審査（9/30）</div>
-          <div><span>2次</span>10/10</div>
-          <div><span>発表</span>11/1</div>
-        </div>
+        <div class="date"><div><span>出願</span>9/1〜9/7</div><div><span>1次</span>書類（9/30）</div><div><span>2次</span>10/10</div><div><span>発表</span>11/1</div></div>
       </article>
-
-      <article class="exam rec">
-        <span class="tag">推薦</span>
-        <h3>A方式推薦</h3>
+      <article class="exam recommend">
+        <span class="tag">推薦</span><h3>A方式推薦</h3>
         <p class="what">英語 ＋<br>国語または数学 ＋ 面接</p>
-        <div class="datebox">
-          <div><span>出願</span>11/1〜11/10</div>
-          <div><span>試験</span>11/29</div>
-          <div><span>発表</span>12/9</div>
-        </div>
+        <div class="date"><div><span>出願</span>11/1〜11/10</div><div><span>試験</span>11/29</div><div><span>発表</span>12/9</div></div>
       </article>
-
       <article class="exam general">
-        <span class="tag">一般</span>
-        <h3>系統別日程</h3>
+        <span class="tag">一般</span><h3>系統別</h3>
         <p class="what">3科目。<br>得意科目を生かしやすい。</p>
-        <div class="datebox">
-          <div><span>出願</span>12/18〜1/12</div>
-          <div><span>試験</span>2/2</div>
-          <div><span>発表</span>2/23</div>
-        </div>
+        <div class="date"><div><span>出願</span>12/18〜1/12</div><div><span>試験</span>2/2</div><div><span>発表</span>2/23</div></div>
       </article>
-
       <article class="exam general">
-        <span class="tag">一般</span>
-        <h3>前期日程</h3>
+        <span class="tag">一般</span><h3>前期</h3>
         <p class="what">3科目。<br>いちばん標準的な受け方。</p>
-        <div class="datebox">
-          <div><span>出願</span>12/18〜1/12</div>
-          <div><span>試験</span>2/3〜2/6・2/11</div>
-          <div><span>発表</span>2/23</div>
-        </div>
+        <div class="date"><div><span>出願</span>12/18〜1/12</div><div><span>試験</span>2/3〜2/5</div><div><span>発表</span>2/23</div></div>
       </article>
-
-      <article class="exam ct">
-        <span class="tag">共通テスト</span>
-        <h3>共テ利用</h3>
-        <p class="what">共通テストの点だけで判定。<br>福大で試験は受けない。</p>
-        <div class="datebox">
-          <div><span>共テ</span>1/16・1/17</div>
-          <div><span>締切</span>Ⅰ期 1/12 ／ Ⅱ期 1/20</div>
-          <div><span>発表</span>2/23</div>
-        </div>
+      <article class="exam common">
+        <span class="tag">共通テスト</span><h3>共テ利用</h3>
+        <p class="what">共テの点で判定。<br>福大で試験は受けない。</p>
+        <div class="date"><div><span>共テ</span>1/16・1/17</div><div><span>締切</span>Ⅰ期 1/12／Ⅱ期 1/20</div><div><span>発表</span>2/23</div></div>
       </article>
-
       <article class="exam late">
-        <span class="tag">一般</span>
-        <h3>後期日程</h3>
+        <span class="tag">一般</span><h3>後期</h3>
         <p class="what">2科目。<br>3月の最後のチャンス。</p>
-        <div class="datebox">
-          <div><span>出願</span>2/15〜2/25</div>
-          <div><span>試験</span>3/4</div>
-          <div><span>発表</span>3/13</div>
-        </div>
+        <div class="date"><div><span>出願</span>2/15〜2/25</div><div><span>試験</span>3/4</div><div><span>発表</span>3/13</div></div>
       </article>
     </div>
-
-    <div class="alert">
-      <b>商学部でまず考えること</b>
-      <p>資格がある → 総合型。推薦が使える → A方式。どちらも難しい／併願したい → 系統別・前期・共テ利用を中心にする。</p>
-    </div>
+    <div class="alert"><b>入試のポイント</b><p>英検・簿記などの資格があるなら、最初に総合型を確認。資格がなければ推薦か一般選抜を中心に考える。</p></div>
   </section>
 
   <!-- 九産大 国際文化 -->
@@ -444,27 +351,84 @@ h2{
         <h2>九産大 国際文化学部</h2>
         <p class="sub">国際文化学科・日本文化学科</p>
       </div>
+      <div class="pill">英語・海外・文化が好きな人向け。<br>体験型の授業が多い。</div>
     </div>
 
-    <div class="no-data">
-      <h3>2027年度の詳しい日付・内容は、まだ未発表です。</h3>
-      <p>今は「第2希望として候補に入れておく」段階でOK。募集要項が公開されたら、このタブに日付と試験内容を追加します。</p>
+    <div class="section-title">大学でこんなことができる</div>
+    <div class="card-grid">
+      <article class="card ksi">
+        <span class="icon">海外</span>
+        <h3>海外研修に挑戦する</h3>
+        <p>アジア・アメリカ・ヨーロッパなどで、文化や言葉を実際に体験して学ぶ。</p>
+      </article>
+      <article class="card ksi">
+        <span class="icon">日本</span>
+        <h3>日本文化を現地で学ぶ</h3>
+        <p>日本文化学科では、国内での体験学習・フィールドスタディがある。</p>
+      </article>
+      <article class="card ksi">
+        <span class="icon">ゼミ</span>
+        <h3>少人数で発表する</h3>
+        <p>演習は平均10人。発表やグループワークで伝える力をつける。</p>
+      </article>
     </div>
 
-    <div class="status-list">
-      <article class="status">
-        <h3>総合型選抜</h3>
-        <p>課題探究型・基礎力重視型・育成型などが大学全体で案内されています。学部で使える方式と内容は要項で確認。</p>
+    <div class="section-title">卒業後に目指しやすい方向</div>
+    <div class="card-grid">
+      <article class="card ksi">
+        <span class="icon">旅</span>
+        <h3>航空・旅行・ホテル</h3>
+        <p>英語や異文化理解を生かして、人を迎える・案内する仕事へ。</p>
       </article>
-      <article class="status">
-        <h3>学校推薦型選抜</h3>
-        <p>高校からの推薦を使う方式。評定条件や面接の有無は、詳しい要項の公開後に確認。</p>
+      <article class="card ksi">
+        <span class="icon">地域</span>
+        <h3>観光・地域づくり</h3>
+        <p>地域の魅力を伝える企画、イベント、自治体関連など。</p>
       </article>
-      <article class="status">
-        <h3>一般・共テ利用</h3>
-        <p>一般選抜、共通テスト利用・併用型が案内されています。試験科目と日程は未発表です。</p>
+      <article class="card ksi">
+        <span class="icon">企業</span>
+        <h3>一般企業・公務員</h3>
+        <p>営業、広報、事務、教育、行政などにも進める。</p>
       </article>
     </div>
+    <div class="fit"><b>向いている人：</b>英語や海外が好き。日本と外国の文化の違いを知りたい。座学だけでなく、体験しながら学びたい。</div>
+
+    <div class="section-title">入試はこう見る</div>
+    <div class="note">※ ここに載せているのは、九州産業大学全体の入試日程です。国際文化学部・商学部で実際に使える方式、試験科目、評定条件、併願の可否は、学部別の募集要項で最終確認してください。</div>
+    <div class="exam-grid">
+      <article class="exam total">
+        <span class="tag">総合型</span><h3>基礎力重視・課題探究型</h3>
+        <p class="what">2段階選抜。<br>選考内容は方式別の要項で確認。</p>
+        <div class="date"><div><span>出願</span>9/9〜9/17</div><div><span>1次</span>10/3 → 10/12発表</div><div><span>2次</span>10/24 → 11/2発表</div></div>
+      </article>
+      <article class="exam recommend">
+        <span class="tag">推薦</span><h3>学校推薦型</h3>
+        <p class="what">高校からの推薦を使う。<br>対象・条件は高校で確認。</p>
+        <div class="date"><div><span>WEB登録</span>10/30〜11/1</div><div><span>出願</span>11/2〜11/9</div><div><span>試験</span>11/22</div><div><span>発表</span>12/1</div></div>
+      </article>
+      <article class="exam general">
+        <span class="tag">一般</span><h3>前期日程</h3>
+        <p class="what">学力テストで受ける。<br>いちばん基本の受け方。</p>
+        <div class="date"><div><span>WEB登録</span>1/1〜1/4</div><div><span>書類出願</span>1/5〜1/13</div><div><span>試験</span>2/1〜2/3</div><div><span>発表</span>2/22</div></div>
+      </article>
+      <article class="exam general">
+        <span class="tag">一般＋共通テスト</span><h3>併用型</h3>
+        <p class="what">一般の試験＋共テの点。<br>両方を使って判定。</p>
+        <div class="date"><div><span>WEB登録</span>1/1〜1/4</div><div><span>書類出願</span>1/5〜1/21</div><div><span>試験</span>2/7・2/8</div><div><span>発表</span>2/22</div></div>
+      </article>
+      <article class="exam common">
+        <span class="tag">共通テスト</span><h3>共テ利用（3回）</h3>
+        <p class="what">共テの点だけで判定。<br>九産大で試験は受けない。</p>
+        <div class="date"><div><span>共テ</span>1/16・1/17</div><div><span>前期</span>WEB1/1〜4・書類1/5〜13 → 発表2/12</div><div><span>中期</span>書類1/18〜27 → 発表2/22</div><div><span>後期</span>書類2/22〜3/5 → 発表3/17</div></div>
+      </article>
+      <article class="exam late">
+        <span class="tag">一般</span><h3>後期日程</h3>
+        <p class="what">3月の最後のチャンス。<br>募集人数は少なめ。</p>
+        <div class="date"><div><span>出願</span>2/22〜2/26</div><div><span>試験</span>3/8</div><div><span>発表</span>3/17</div></div>
+      </article>
+    </div>
+
+    <div class="alert"><b>入試のポイント</b><p>総合型・推薦は秋に動きます。一般前期は2月1〜3日、併用型は2月7・8日、後期は3月8日です。共通テスト利用は前期・中期・後期の3回があります。試験科目・評定条件・併願の可否は、2027年度の募集要項で最終確認が必要です。</p></div>
   </section>
 
   <!-- 九産大 商 -->
@@ -474,43 +438,96 @@ h2{
         <h2>九産大 商学部</h2>
         <p class="sub">経営・流通学科</p>
       </div>
+      <div class="pill">会社・お金・商品が好きな人向け。<br>実践や資格の授業がある。</div>
     </div>
 
-    <div class="no-data">
-      <h3>2027年度の詳しい日付・内容は、まだ未発表です。</h3>
-      <p>今は「第2希望として候補に入れておく」段階でOK。募集要項が公開されたら、このタブに日付と試験内容を追加します。</p>
+    <div class="section-title">大学でこんなことができる</div>
+    <div class="card-grid">
+      <article class="card ksc">
+        <span class="icon">選ぶ</span>
+        <h3>2年生からコースを選ぶ</h3>
+        <p>企業経営、会計・ファイナンス、マーケティングの3コースから選べる。</p>
+      </article>
+      <article class="card ksc">
+        <span class="icon">実践</span>
+        <h3>ビジネスをやってみる</h3>
+        <p>ベンチャービジネス、ビジネス実践演習などで、会社の課題を考える。</p>
+      </article>
+      <article class="card ksc">
+        <span class="icon">資格</span>
+        <h3>簿記・FPに取り組む</h3>
+        <p>初級簿記やファイナンシャル・プランニングなど、資格に役立つ授業がある。</p>
+      </article>
     </div>
 
-    <div class="status-list">
-      <article class="status">
-        <h3>総合型選抜</h3>
-        <p>課題探究型・基礎力重視型・育成型などが大学全体で案内されています。学部で使える方式と内容は要項で確認。</p>
+    <div class="section-title">卒業後に目指しやすい方向</div>
+    <div class="card-grid">
+      <article class="card ksc">
+        <span class="icon">商品</span>
+        <h3>販売・マーケティング</h3>
+        <p>小売、メーカー、広告、商品企画、営業など。</p>
       </article>
-      <article class="status">
-        <h3>学校推薦型選抜</h3>
-        <p>高校からの推薦を使う方式。評定条件や面接の有無は、詳しい要項の公開後に確認。</p>
+      <article class="card ksc">
+        <span class="icon">お金</span>
+        <h3>金融・会計</h3>
+        <p>銀行、保険、証券、経理、会計事務所など。</p>
       </article>
-      <article class="status">
-        <h3>一般・共テ利用</h3>
-        <p>一般選抜、共通テスト利用・併用型が案内されています。試験科目と日程は未発表です。</p>
+      <article class="card ksc">
+        <span class="icon">会社</span>
+        <h3>物流・一般企業・公務員</h3>
+        <p>物流、事務、地域企業、行政など幅広い方向がある。</p>
       </article>
     </div>
-  </section>
+    <div class="fit"><b>向いている人：</b>「将来は会社で働きたい」がはっきりしている。簿記・お金・商品・起業に少しでも興味がある。</div>
 
-  <section class="next">
-    <h2>今やることは、この3つだけ</h2>
-    <div class="steps">
-      <div class="step"><b>① 福大商</b><br>英検・簿記など、総合型に使える資格があるか確認。</div>
-      <div class="step"><b>② 福大人文・商</b><br>高校の先生に、A方式推薦・指定校推薦を使えるか聞く。</div>
-      <div class="step"><b>③ 九産大</b><br>2027年度の募集要項が出たら、日付と科目を追加して比べる。</div>
+    <div class="section-title">入試はこう見る</div>
+    <div class="note">※ ここに載せているのは、九州産業大学全体の入試日程です。国際文化学部・商学部で実際に使える方式、試験科目、評定条件、併願の可否は、学部別の募集要項で最終確認してください。</div>
+    <div class="exam-grid">
+      <article class="exam total">
+        <span class="tag">総合型</span><h3>基礎力重視・課題探究型</h3>
+        <p class="what">2段階選抜。<br>選考内容は方式別の要項で確認。</p>
+        <div class="date"><div><span>出願</span>9/9〜9/17</div><div><span>1次</span>10/3 → 10/12発表</div><div><span>2次</span>10/24 → 11/2発表</div></div>
+      </article>
+      <article class="exam recommend">
+        <span class="tag">推薦</span><h3>学校推薦型</h3>
+        <p class="what">高校からの推薦を使う。<br>対象・条件は高校で確認。</p>
+        <div class="date"><div><span>WEB登録</span>10/30〜11/1</div><div><span>出願</span>11/2〜11/9</div><div><span>試験</span>11/22</div><div><span>発表</span>12/1</div></div>
+      </article>
+      <article class="exam general">
+        <span class="tag">一般</span><h3>前期日程</h3>
+        <p class="what">学力テストで受ける。<br>いちばん基本の受け方。</p>
+        <div class="date"><div><span>WEB登録</span>1/1〜1/4</div><div><span>書類出願</span>1/5〜1/13</div><div><span>試験</span>2/1〜2/3</div><div><span>発表</span>2/22</div></div>
+      </article>
+      <article class="exam general">
+        <span class="tag">一般＋共通テスト</span><h3>併用型</h3>
+        <p class="what">一般の試験＋共テの点。<br>両方を使って判定。</p>
+        <div class="date"><div><span>WEB登録</span>1/1〜1/4</div><div><span>書類出願</span>1/5〜1/21</div><div><span>試験</span>2/7・2/8</div><div><span>発表</span>2/22</div></div>
+      </article>
+      <article class="exam common">
+        <span class="tag">共通テスト</span><h3>共テ利用（3回）</h3>
+        <p class="what">共テの点だけで判定。<br>九産大で試験は受けない。</p>
+        <div class="date"><div><span>共テ</span>1/16・1/17</div><div><span>前期</span>WEB1/1〜4・書類1/5〜13 → 発表2/12</div><div><span>中期</span>書類1/18〜27 → 発表2/22</div><div><span>後期</span>書類2/22〜3/5 → 発表3/17</div></div>
+      </article>
+      <article class="exam late">
+        <span class="tag">一般</span><h3>後期日程</h3>
+        <p class="what">3月の最後のチャンス。<br>募集人数は少なめ。</p>
+        <div class="date"><div><span>出願</span>2/22〜2/26</div><div><span>試験</span>3/8</div><div><span>発表</span>3/17</div></div>
+      </article>
     </div>
+
+    <div class="alert"><b>入試のポイント</b><p>商学部も、総合型・推薦は秋、一般前期は2月1〜3日、併用型は2月7・8日、後期は3月8日です。共通テスト利用は前期・中期・後期の3回があるため、自己採点後に中期・後期も検討できます。試験科目・評定条件・併願の可否は募集要項で最終確認が必要です。</p></div>
   </section>
 
   <footer class="footer">
-    福岡大学の2027年度日程・方式は大学公式の入試ガイド／受験生サイトを基に記載。九州産業大学は、2027年度の詳細募集要項が順次公開予定のため、未公表部分は「未発表」としています。<br>
+    <b>注意：</b>将来の仕事は学部だけで決まるものではありません。授業・ゼミ・資格・就職活動の取り組み方で広がります。<br>
+    授業・学びの内容は各大学の公式サイトをもとに、高校生向けに短く整理しています。入試日程は、福岡大学「入試ガイド2027」と九州産業大学「入試ガイド2027」の日程ページを基にしています。九州産業大学は、試験科目・評定条件・併願の可否などが募集要項で確定するため、出願前に必ず確認してください。<br>
     公式確認先：
     <a href="https://nyushi.fukuoka-u.ac.jp/" target="_blank" rel="noopener">福岡大学 受験生サイト</a> ／
-    <a href="https://www.kyusan-u.ac.jp/nyushi/internet-ap/" target="_blank" rel="noopener">九州産業大学 募集要項等ダウンロード</a>
+    <a href="https://www.hum.fukuoka-u.ac.jp/" target="_blank" rel="noopener">福岡大学 人文学部</a> ／
+    <a href="https://www.comm.fukuoka-u.ac.jp/" target="_blank" rel="noopener">福岡大学 商学部</a> ／
+    <a href="https://www.kyusan-u.ac.jp/faculty/kokusai/" target="_blank" rel="noopener">九州産業大学 国際文化学部</a> ／
+    <a href="https://www.kyusan-u.ac.jp/faculty/sho/" target="_blank" rel="noopener">九州産業大学 商学部</a> ／
+    <a href="https://www.kyusan-u.ac.jp/nyushi/ebook/ksu_2027_guide/?pNo=1" target="_blank" rel="noopener">九州産業大学 入試ガイド2027</a>
   </footer>
 </main>
 
@@ -518,23 +535,23 @@ h2{
 const tabs = [...document.querySelectorAll('.tab')];
 const panels = [...document.querySelectorAll('.panel')];
 
-function showTab(name) {
-  tabs.forEach(tab => tab.setAttribute('aria-selected', String(tab.dataset.target === name)));
-  panels.forEach(panel => panel.classList.toggle('active', panel.id === name));
+function showPanel(target) {
+  tabs.forEach(tab => tab.setAttribute('aria-selected', String(tab.dataset.target === target)));
+  panels.forEach(panel => panel.classList.toggle('active', panel.id === target));
 }
 
 tabs.forEach((tab, index) => {
-  tab.addEventListener('click', () => showTab(tab.dataset.target));
-  tab.addEventListener('keydown', (e) => {
-    if (!['ArrowLeft','ArrowRight','Home','End'].includes(e.key)) return;
-    e.preventDefault();
+  tab.addEventListener('click', () => showPanel(tab.dataset.target));
+  tab.addEventListener('keydown', (event) => {
+    if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return;
+    event.preventDefault();
     let next = index;
-    if (e.key === 'ArrowRight') next = (index + 1) % tabs.length;
-    if (e.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
-    if (e.key === 'Home') next = 0;
-    if (e.key === 'End') next = tabs.length - 1;
+    if (event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+    if (event.key === 'ArrowLeft') next = (index - 1 + tabs.length) % tabs.length;
+    if (event.key === 'Home') next = 0;
+    if (event.key === 'End') next = tabs.length - 1;
     tabs[next].focus();
-    showTab(tabs[next].dataset.target);
+    showPanel(tabs[next].dataset.target);
   });
 });
 </script>
