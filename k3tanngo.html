@@ -1,0 +1,2250 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>大学受験 英単語1000 - Sky Blue Edition</title>
+<style>
+/*
+  ☁️ Sky Blue Edition
+  明るい空色をベースにした、見やすくシンプルな学習画面
+*/
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&family=Zen+Maru+Gothic:wght@500;700;900&display=swap');
+
+:root {
+  --main: #4ca8ea;
+  --main-dark: #2584d0;
+  --blue: #38bdf8;
+  --blue-dark: #0284c7;
+  --green: #48bb78;
+  --green-dark: #2f855a;
+  --red: #f56565;
+  --red-dark: #d94343;
+  --bg: #eef8ff;
+  --text: #22577a;
+  --sub: #66849a;
+  --card: #ffffff;
+  --line: #bfe4fb;
+  --shadow-sm: 0 5px 16px rgba(49, 130, 206, .12);
+  --shadow-md: 0 12px 30px rgba(49, 130, 206, .16);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 4%, rgba(125, 211, 252, .45), transparent 28%),
+    radial-gradient(circle at 90% 12%, rgba(94, 234, 212, .22), transparent 26%),
+    linear-gradient(180deg, #e7f6ff 0%, var(--bg) 45%, #f7fcff 100%);
+  color: var(--text);
+  font-family: "Nunito", "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Rounded Mplus 1c", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+main {
+  width: min(760px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 30px 0 60px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 22px 24px;
+  border: 2px solid rgba(255,255,255,.9);
+  border-radius: 22px;
+  background: rgba(255,255,255,.95);
+  box-shadow: var(--shadow-sm);
+}
+.header-left h1 {
+  margin: 0;
+  color: var(--main-dark);
+  font-size: clamp(1.45rem, 5vw, 1.9rem);
+  letter-spacing: .04em;
+}
+.header-left p {
+  margin: 5px 0 0;
+  color: var(--sub);
+  font-size: .88rem;
+  font-weight: 800;
+}
+.header-right { text-align: right; }
+#progress {
+  color: var(--main-dark);
+  font-size: 1.1rem;
+  font-weight: 900;
+}
+.bar {
+  width: 160px;
+  height: 14px;
+  margin-top: 8px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #dff2ff;
+  box-shadow: inset 0 2px 4px rgba(37,132,208,.12);
+}
+.bar i {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--main), #75d5ff);
+  transition: width .35s ease;
+}
+
+.tabs {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding-bottom: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+button, select, input { font: inherit; outline: none; }
+.tab {
+  flex: 1;
+  min-width: 120px;
+  border: none;
+  border-radius: 14px;
+  padding: 13px 16px;
+  background: rgba(255,255,255,.92);
+  color: var(--sub);
+  box-shadow: 0 4px 0 #cceafa;
+  font-size: .95rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform .15s ease, background .15s ease, color .15s ease, box-shadow .15s ease;
+  white-space: nowrap;
+}
+.tab:hover { transform: translateY(-1px); }
+.tab:active { transform: translateY(4px); box-shadow: none; }
+.tab.active {
+  background: linear-gradient(135deg, var(--main), #67c9ff);
+  color: #fff;
+  box-shadow: 0 4px 0 var(--main-dark);
+}
+
+.screen { display: none; animation: fadeIn .25s ease; }
+.screen.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.box {
+  padding: 24px;
+  border: 2px solid rgba(255,255,255,.92);
+  border-radius: 22px;
+  background: rgba(255,255,255,.96);
+  box-shadow: var(--shadow-md);
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+select, input {
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  padding: 11px 14px;
+  background: #fff;
+  color: var(--text);
+  font-weight: 800;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+select:focus, input:focus {
+  border-color: var(--main);
+  box-shadow: 0 0 0 4px rgba(76,168,234,.16);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  min-height: 320px;
+  place-items: center;
+  margin-top: 20px;
+  padding: 30px;
+  border: 3px solid var(--line);
+  border-radius: 24px;
+  background: linear-gradient(145deg, #fff 0%, #f1fbff 100%);
+  box-shadow: inset 0 0 0 4px rgba(255,255,255,.8), 0 8px 22px rgba(56,189,248,.13);
+  text-align: center;
+  cursor: pointer;
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+.card:hover { transform: translateY(-2px); box-shadow: inset 0 0 0 4px rgba(255,255,255,.8), 0 12px 26px rgba(56,189,248,.18); }
+.en {
+  color: var(--text);
+  font-size: clamp(2.5rem, 10vw, 4.5rem);
+  font-weight: 900;
+  line-height: 1.1;
+  word-break: break-word;
+}
+.pos {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #dff3ff;
+  color: var(--main-dark);
+  font-size: .85rem;
+  font-weight: 900;
+}
+.ja {
+  display: none;
+  margin-top: 22px;
+  color: var(--main-dark);
+  font-size: clamp(1.45rem, 6vw, 2.2rem);
+  font-weight: 900;
+  animation: popIn .25s ease;
+}
+.ja.show { display: block; }
+@keyframes popIn { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: scale(1); } }
+.tip { margin-top: 22px; color: var(--sub); font-size: .9rem; font-weight: 800; }
+
+.actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+.btn {
+  border: none;
+  border-radius: 13px;
+  padding: 14px 12px;
+  background: #eaf7ff;
+  color: var(--text);
+  box-shadow: 0 4px 0 #cdeafa;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+}
+.btn:hover { filter: brightness(.98); }
+.btn:active { transform: translateY(4px); box-shadow: none; }
+.btn:disabled { cursor: not-allowed; opacity: .65; }
+.weak { background: #fff0f0; color: var(--red-dark); box-shadow: 0 4px 0 #ffd0d0; }
+.learn { background: #eafff0; color: var(--green-dark); box-shadow: 0 4px 0 #c4f0d4; }
+.primary { background: linear-gradient(135deg, var(--main), #67c9ff); color: #fff; box-shadow: 0 4px 0 var(--main-dark); }
+
+.words {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 2px dashed var(--line);
+}
+.word {
+  padding: 10px 4px;
+  border: 2px solid transparent;
+  border-radius: 11px;
+  background: #edf8ff;
+  color: var(--sub);
+  box-shadow: inset 0 0 0 2px #d9effc;
+  font-size: .84rem;
+  font-weight: 900;
+  cursor: pointer;
+  transition: transform .14s ease, background .14s ease, color .14s ease;
+}
+.word:hover { transform: translateY(-1px); }
+.word.now { background: #fff; color: var(--main-dark); box-shadow: inset 0 0 0 2px var(--main); transform: scale(1.03); }
+.word.ok { background: var(--green); color: #fff; box-shadow: none; }
+.word.bad { background: var(--red); color: #fff; box-shadow: none; }
+
+.qword {
+  margin-top: 16px;
+  padding: 48px 20px;
+  border: 3px solid var(--line);
+  border-radius: 24px;
+  background: linear-gradient(145deg, #fff, #f0faff);
+  color: var(--text);
+  box-shadow: inset 0 2px 12px rgba(37,132,208,.05);
+  text-align: center;
+  font-size: clamp(2.4rem, 10vw, 4.4rem);
+  font-weight: 900;
+}
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: max-content;
+  margin: 16px auto 0;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--blue);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(56,189,248,.32);
+  font-weight: 900;
+}
+.timer.danger { background: var(--red); box-shadow: 0 4px 12px rgba(245,101,101,.3); animation: pulse 1s infinite alternate; }
+@keyframes pulse { from { transform: scale(1); } to { transform: scale(1.05); } }
+.timer small { font-size: .85rem; }
+.timer b { font-size: 1.4rem; }
+.time-setting { display: flex; align-items: center; gap: 8px; color: var(--sub); font-size: .9rem; font-weight: 900; }
+.time-setting select { padding: 8px 12px; }
+.options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 24px; }
+.option { min-height: 64px; text-align: center; font-size: 1.08rem; }
+.correct { background: var(--green)!important; color: #fff!important; box-shadow: 0 4px 0 var(--green-dark)!important; }
+.wrong { background: var(--red)!important; color: #fff!important; box-shadow: 0 4px 0 var(--red-dark)!important; opacity: .9; }
+#feedback { min-height: 50px; padding-top: 20px; color: var(--text); text-align: center; font-size: 1.2rem; font-weight: 900; }
+
+.actions-row { display: flex; justify-content: center; gap: 12px; margin-top: 24px; flex-wrap: wrap; }
+.quiz-btn { display: none; min-width: 160px; max-width: 300px; padding: 16px 24px; flex: 1; }
+.quiz-btn.show { display: block; animation: fadeIn .25s ease; }
+.quiz-start-area { margin-top: 24px; text-align: center; }
+.quiz-start-note { margin: 0 0 12px; color: var(--sub); font-size: .92rem; font-weight: 900; }
+.quiz-start-button { display: inline-block; width: min(100%, 360px); padding: 17px 24px; font-size: 1.08rem; }
+
+#search { width: 100%; margin: 20px 0; padding: 16px; border: 2px solid var(--line); border-radius: 14px; background: #fff; font-size: 1rem; }
+.list { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.item { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px; border: 2px solid transparent; border-radius: 15px; background: #eef9ff; transition: border-color .15s ease, background .15s ease; }
+.item:hover { border-color: var(--main); background: #fff; }
+.item b { display: block; color: var(--text); font-size: 1.1rem; }
+.item span { display: block; margin-top: 4px; color: var(--sub); font-size: .85rem; }
+.item .btn { padding: 8px 12px; font-size: .85rem; }
+.empty { padding: 50px 10px; color: var(--sub); text-align: center; font-size: 1.1rem; font-weight: 900; }
+.tip-footer { margin-top: 24px; color: var(--sub); text-align: center; font-size: .85rem; font-weight: 800; }
+
+.ranking-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 18px 0 4px;
+  padding: 17px;
+  border: 2px solid var(--line);
+  border-radius: 18px;
+  background: linear-gradient(135deg, #eaf8ff, #f4fffd);
+}
+.ranking-panel b { color: var(--main-dark); font-size: 1.05rem; }
+.ranking-panel p { margin: 4px 0 0; color: var(--sub); font-size: .84rem; font-weight: 800; }
+.ranking-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+.ranking-buttons .btn { padding: 11px 14px; }
+.ranking-status { display: none; margin: 16px 0 0; padding: 11px 14px; border-radius: 14px; background: #fff8dc; color: #9a6e0f; text-align: center; font-weight: 900; }
+.ranking-status.show { display: block; }
+.modal { display: none; position: fixed; z-index: 20; inset: 0; align-items: center; justify-content: center; padding: 18px; background: rgba(18, 92, 140, .35); }
+.modal.open { display: flex; }
+.modal-card { position: relative; width: min(520px, 100%); max-height: min(720px, calc(100vh - 36px)); overflow: auto; padding: 28px; border: 2px solid rgba(255,255,255,.96); border-radius: 22px; background: #fff; box-shadow: 0 18px 45px rgba(28, 104, 150, .3); }
+.modal-card h2 { margin: 0 0 8px; color: var(--main-dark); }
+.modal-card p { color: var(--sub); line-height: 1.65; font-weight: 800; }
+.modal-close { position: absolute; top: 12px; right: 12px; width: 38px; height: 38px; padding: 0; border-radius: 50%; background: #edf8ff; color: var(--sub); box-shadow: none; }
+.modal-input { width: 100%; margin: 14px 0 8px; font-size: 1.1rem; }
+.form-error { min-height: 24px; margin: 4px 0 0; color: var(--red-dark); font-size: .9rem; font-weight: 900; }
+.ranking-list { display: grid; gap: 9px; margin-top: 16px; }
+.ranking-row { display: grid; grid-template-columns: 42px 1fr auto; gap: 10px; align-items: center; padding: 12px 14px; border-radius: 14px; background: #eef9ff; }
+.ranking-row.top1 { background: #fff4bf; }
+.ranking-row.top2 { background: #eff4f8; }
+.ranking-row.top3 { background: #ffe4ce; }
+.ranking-rank { color: var(--main-dark); text-align: center; font-weight: 900; }
+.ranking-name { min-width: 0; overflow: hidden; color: var(--text); text-overflow: ellipsis; white-space: nowrap; font-weight: 900; }
+.ranking-score { color: var(--main-dark); text-align: right; white-space: nowrap; font-size: .9rem; font-weight: 900; }
+.ranking-score small { color: var(--sub); font-size: .75rem; }
+.ranking-saving { display: none; margin-top: 12px; color: var(--sub); font-weight: 900; }
+.ranking-saving.show { display: block; }
+#rankingQuitBtn { display: none; }
+#rankingQuitBtn.show { display: inline-block; }
+
+@media (max-width: 600px) {
+  header { align-items: stretch; flex-direction: column; padding: 22px; text-align: center; }
+  .header-right { margin-top: 6px; text-align: center; }
+  .bar { width: 100%; margin: 8px auto 0; }
+  .actions { grid-template-columns: 1fr 1fr; }
+  .actions .primary { grid-column: 1 / -1; }
+  .options, .list { grid-template-columns: 1fr; }
+  .ranking-panel { align-items: stretch; }
+  .ranking-buttons { display: grid; grid-template-columns: 1fr 1fr; }
+  .ranking-buttons .btn { width: 100%; }
+  .ranking-row { grid-template-columns: 36px 1fr; }
+  .ranking-score { grid-column: 2; text-align: left; }
+}
+
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="header-left">
+      <h1>☁️ 英単語 1000</h1>
+      <p>1日10語、空色でサクッと覚えよう！</p>
+    </div>
+    <div class="header-right">
+      <div id="progress">0 / 1000語</div>
+      <div class="bar"><i id="bar"></i></div>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-page="card">📚 カード</button>
+    <button class="tab" data-page="quiz">🫧 クイズ</button>
+    <button class="tab" data-page="weak">📖 苦手ノート</button>
+  </nav>
+
+  <section class="screen active" id="card">
+    <div class="box">
+      <div class="row">
+        <label style="font-weight:900; color:var(--text);">📍 今日の10語：
+          <select id="chapter"></select>
+        </label>
+        <b id="count" style="color:var(--main); font-size:1.2rem;">1 / 10</b>
+      </div>
+
+      <div class="card" id="cardBox">
+        <div>
+          <div class="en" id="en"></div>
+          <div class="pos" id="pos"></div>
+          <div class="ja" id="ja"></div>
+          <div class="tip" id="tap">👆 タップして意味を見るよ</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="speak">🔊 聞く</button>
+        <button class="btn weak" id="weakBtn">💦 苦手</button>
+        <button class="btn learn" id="learnBtn">✨ 完璧!</button>
+        <button class="btn primary" id="nextBtn" style="background:var(--main); box-shadow:0 4px 0 var(--main-dark);">つぎへ 🪄</button>
+      </div>
+
+      <div class="words" id="wordButtons"></div>
+    </div>
+  </section>
+
+  <section class="screen" id="quiz">
+    <div class="ranking-panel" id="rankingPanel">
+      <div>
+        <b>🏆 ランキングに挑戦</b>
+        <p>1000問を重複なしで出題。1問10秒、途中終了は記録されません。</p>
+      </div>
+      <div class="ranking-buttons">
+        <button class="btn primary" id="rankingChallengeBtn">1000問に挑戦</button>
+        <button class="btn" id="openRankingBtn">ランキングを見る</button>
+      </div>
+    </div>
+
+    <div class="ranking-status" id="rankingStatus"></div>
+
+    <div class="box" id="quizPlayArea">
+      <div class="row">
+        <b style="font-size:1.2rem; color:var(--text);">🫧 4択クイズ</b>
+        <div class="row" id="normalQuizControls">
+          <select id="quizMode" aria-label="出題範囲">
+            <option value="chapter">いまの10語</option>
+            <option value="random">ランダム1000語</option>
+            <option value="weak">苦手だけ</option>
+          </select>
+          <label class="time-setting">⏱ 制限時間
+            <select id="timeLimit" aria-label="制限時間">
+              <option value="10">10秒</option>
+              <option value="15" selected>15秒</option>
+              <option value="20">20秒</option>
+              <option value="30">30秒</option>
+            </select>
+          </label>
+        </div>
+        <button class="btn weak" id="rankingQuitBtn">挑戦を中断</button>
+      </div>
+
+      <div id="quizProgressText" style="text-align:center; font-weight:900; color:var(--main); margin-top:16px; font-size:1.1rem;"></div>
+      <p id="quizQuestionGuide" style="text-align:center; font-weight:900; margin-top:8px; color:var(--sub);">この単語の意味はなに？💭</p>
+
+      <div class="qword" id="qword"></div>
+      <div class="timer" id="timer"><small>残り</small><b id="timeLeft">15</b><small>秒</small></div>
+      <div class="options" id="options"></div>
+      <div id="feedback"></div>
+
+      <div class="quiz-start-area" id="quizStartArea">
+        <p class="quiz-start-note">出題範囲と制限時間を選んだら、スタート！</p>
+        <button class="btn primary quiz-start-button" id="quizStartBtn">クイズをはじめる 🫧</button>
+      </div>
+
+      <div class="actions-row">
+        <button class="btn primary quiz-btn" id="quizNext" style="margin:0;">次の問題へ 🪄</button>
+        <button class="btn quiz-btn" id="quizFinishBtn" style="margin:0; background:var(--bg); color:var(--text);">ここでおしまい ☁️</button>
+      </div>
+    </div>
+
+    <div class="box" id="quizResultArea" style="display:none; text-align:center; padding: 40px 20px;">
+      <div style="font-size:4.5rem; margin-bottom:10px;">🎊</div>
+      <h2 id="quizResultTitle" style="color:var(--main); margin:0 0 16px;">クイズおつかれさま！</h2>
+      <p id="quizResultText" style="font-size:1.3rem; font-weight:900; color:var(--text); line-height:1.6;"></p>
+      <p class="ranking-saving" id="rankingSaving">ランキングへ記録しています…</p>
+
+      <div class="actions-row" style="margin-top:32px;">
+        <button class="btn primary quiz-btn show" id="quizRetry" style="margin:0;">もう1回やる 🪄</button>
+        <button class="btn primary quiz-btn" id="rankingRetry" style="margin:0;">ランキングに挑戦</button>
+        <button class="btn quiz-btn" id="viewRankingFromResult" style="margin:0; background:var(--bg); color:var(--text);">ランキングを見る 🏆</button>
+        <button class="btn quiz-btn show" onclick="showPage('card')" style="margin:0; background:var(--bg); color:var(--text);">カードにもどる 📖</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="modal" id="nicknameModal" role="dialog" aria-modal="true" aria-labelledby="nicknameTitle">
+    <div class="modal-card">
+      <button class="btn modal-close" data-close-modal="nicknameModal" aria-label="閉じる">×</button>
+      <h2 id="nicknameTitle">🏆 1000問チャレンジ</h2>
+      <p>ランキングに表示するニックネームを入力してください。<br>本名・学校名・連絡先などは入力しないでください。</p>
+      <input class="modal-input" id="nicknameInput" maxlength="12" autocomplete="off" placeholder="例：まなぶ" aria-label="ニックネーム">
+      <div class="form-error" id="nicknameError"></div>
+      <p>ルール：1000問を重複なしで出題／1問10秒／正解数が多い順、同点なら短時間の順です。</p>
+      <div class="actions-row">
+        <button class="btn primary quiz-btn show" id="startRankingBtn">この名前で挑戦する</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="rankingModal" role="dialog" aria-modal="true" aria-labelledby="rankingTitle">
+    <div class="modal-card">
+      <button class="btn modal-close" data-close-modal="rankingModal" aria-label="閉じる">×</button>
+      <h2 id="rankingTitle">🏆 1000問チャレンジ ランキング</h2>
+      <p>同じニックネームは、いちばんよい記録だけを表示します。</p>
+      <div id="rankingList" class="ranking-list"><div class="empty">読み込み中…</div></div>
+    </div>
+  </div>
+
+  <section class="screen" id="weak">
+    <div class="box">
+      <div class="row">
+        <b style="font-size:1.2rem; color:var(--text);">📖 苦手単語ノート</b>
+        <button class="btn" id="toggleList" style="padding:10px 16px;">全1000語を見る 👀</button>
+      </div>
+      <input id="search" placeholder="🔍 英単語・日本語でさがす...">
+      <div id="list"></div>
+    </div>
+  </section>
+
+</main>
+
+<script>
+/*
+  英単語データ
+  形式：英単語 | 日本語の意味 | 品詞
+*/
+const DATA = `achieve|達成する|動
+act|行動する|動
+adapt|適応する|動
+add|加える|動
+admit|認める|動
+affect|影響を与える|動
+afford|～する余裕がある|動
+agree|同意する|動
+allow|許す|動
+announce|発表する|動
+appear|現れる|動
+apply|応募する・当てはまる|動
+appreciate|感謝する・理解する|動
+approach|近づく・取り組む|動
+argue|主張する・議論する|動
+arise|生じる|動
+arrange|手配する・整える|動
+arrive|到着する|動
+attach|付ける|動
+attempt|試みる|動
+attract|引きつける|動
+avoid|避ける|動
+behave|行動する|動
+belong|属する|動
+borrow|借りる|動
+breathe|呼吸する|動
+bring|持ってくる|動
+calculate|計算する|動
+capture|とらえる|動
+carry|運ぶ|動
+cause|引き起こす|動
+celebrate|祝う|動
+change|変える|動
+choose|選ぶ|動
+claim|主張する|動
+collect|集める|動
+combine|結びつける|動
+comment|意見を述べる|動
+compare|比較する|動
+compete|競争する|動
+complain|不満を言う|動
+conclude|結論づける|動
+conduct|行う|動
+confirm|確認する|動
+connect|つなぐ|動
+consider|考慮する|動
+consist|成り立つ|動
+contain|含む|動
+continue|続ける|動
+contribute|貢献する|動
+control|制御する|動
+convince|納得させる|動
+create|作り出す|動
+decrease|減少する|動
+define|定義する|動
+deliver|届ける|動
+demand|要求する|動
+depend|頼る|動
+describe|説明する|動
+destroy|破壊する|動
+determine|決める|動
+develop|発達させる|動
+discover|発見する|動
+discuss|議論する|動
+divide|分ける|動
+doubt|疑う|動
+earn|得る・稼ぐ|動
+encourage|励ます|動
+engage|従事する|動
+ensure|確実にする|動
+enter|入る|動
+establish|設立する|動
+estimate|見積もる|動
+examine|調べる|動
+exist|存在する|動
+expand|拡大する|動
+expect|期待する|動
+experience|経験する|動
+explain|説明する|動
+express|表現する|動
+fail|失敗する|動
+focus|集中する|動
+force|強制する|動
+gain|得る|動
+generate|生み出す|動
+handle|扱う|動
+happen|起こる|動
+identify|特定する|動
+ignore|無視する|動
+imagine|想像する|動
+improve|改善する|動
+include|含む|動
+increase|増える・増やす|動
+influence|影響を与える|動
+inform|知らせる|動
+insist|強く主張する|動
+install|設置する|動
+intend|意図する|動
+introduce|紹介する・導入する|動
+involve|含む・関わらせる|動
+issue|発行する・問題を出す|動
+join|参加する|動
+judge|判断する|動
+keep|保つ|動
+lack|欠いている|動
+last|続く|動
+lead|導く|動
+limit|制限する|動
+maintain|維持する|動
+manage|管理する・何とかする|動
+matter|重要である|動
+measure|測る|動
+mention|述べる|動
+notice|気づく|動
+obtain|得る|動
+occur|起こる|動
+offer|申し出る・提供する|動
+operate|操作する・運営する|動
+organize|組織する|動
+overcome|克服する|動
+own|所有する|動
+participate|参加する|動
+perform|行う・演じる|動
+permit|許可する|動
+persuade|説得する|動
+plan|計画する|動
+prevent|防ぐ|動
+produce|生産する|動
+promote|促進する|動
+protect|守る|動
+prove|証明する|動
+provide|提供する|動
+publish|出版する|動
+raise|上げる・育てる|動
+reach|到着する・達する|動
+realize|気づく・実現する|動
+receive|受け取る|動
+recognize|認識する|動
+recommend|勧める|動
+reduce|減らす|動
+refer|言及する・参照する|動
+reflect|反映する|動
+refuse|拒む|動
+relate|関係する|動
+remain|残る|動
+remember|覚えている|動
+remove|取り除く|動
+replace|取って代わる|動
+represent|表す・代表する|動
+require|必要とする|動
+respond|反応する・答える|動
+result|結果となる|動
+reveal|明らかにする|動
+rise|上がる|動
+save|救う・節約する|動
+search|探す|動
+select|選ぶ|動
+separate|分ける|動
+share|共有する|動
+solve|解決する|動
+spend|使う・過ごす|動
+spread|広げる|動
+stand|立つ・我慢する|動
+state|述べる|動
+suffer|苦しむ|動
+suggest|提案する|動
+support|支える|動
+suppose|思う・仮定する|動
+survive|生き残る|動
+tend|傾向がある|動
+treat|扱う・治療する|動
+trust|信頼する|動
+turn|回す・変わる|動
+vary|変わる|動
+waste|無駄にする|動
+win|勝つ|動
+wonder|不思議に思う|動
+withdraw|引き出す・撤回する|動
+accept|受け入れる|動
+accuse|非難する|動
+acquire|身につける|動
+advise|助言する|動
+aim|目指す|動
+analyze|分析する|動
+anticipate|予期する|動
+assist|手伝う|動
+attend|出席する|動
+authorize|許可する|動
+ban|禁止する|動
+benefit|利益を得る|動
+blame|責める|動
+boost|高める|動
+cancel|取り消す|動
+challenge|挑戦する|動
+clarify|明確にする|動
+classify|分類する|動
+commit|委ねる・約束する|動
+communicate|伝える|動
+concentrate|集中する|動
+concern|心配させる・関係する|動
+conserve|保存する・節約する|動
+construct|建設する|動
+consume|消費する|動
+contact|連絡する|動
+convert|変える|動
+cope|対処する|動
+correspond|一致する・文通する|動
+criticize|批判する|動
+decline|減る・断る|動
+demonstrate|示す・実演する|動
+deny|否定する|動
+derive|引き出す・由来する|動
+detect|発見する|動
+distinguish|区別する|動
+distribute|配布する|動
+eliminate|取り除く|動
+emerge|現れる|動
+emphasize|強調する|動
+employ|雇う・使う|動
+encounter|出会う|動
+enhance|高める|動
+evaluate|評価する|動
+exchange|交換する|動
+exclude|除く|動
+exhibit|展示する・示す|動
+explore|探検する・調べる|動
+expose|さらす|動
+extend|広げる・延長する|動
+facilitate|促進する|動
+forbid|禁じる|動
+found|設立する|動
+fund|資金を出す|動
+guarantee|保証する|動
+hesitate|ためらう|動
+illustrate|説明する・例示する|動
+imply|ほのめかす|動
+indicate|示す|動
+inherit|受け継ぐ|動
+inspect|調査する|動
+interpret|解釈する|動
+investigate|調査する|動
+justify|正当化する|動
+launch|開始する|動
+locate|位置づける|動
+modify|修正する|動
+monitor|監視する|動
+negotiate|交渉する|動
+observe|観察する|動
+occupy|占める|動
+predict|予測する|動
+preserve|保存する|動
+prioritize|優先する|動
+proceed|進む|動
+prohibit|禁止する|動
+pursue|追求する|動
+react|反応する|動
+recover|回復する|動
+reject|拒絶する|動
+release|解放する・発売する|動
+rely|頼る|動
+reserve|予約する・取っておく|動
+resolve|解決する・決心する|動
+restore|回復する|動
+retain|保持する|動
+retire|引退する|動
+revise|修正する・復習する|動
+reward|報いる|動
+schedule|予定を組む|動
+settle|解決する・定住する|動
+shift|変える・移す|動
+shrink|縮む|動
+signal|合図する|動
+specify|明記する|動
+stimulate|刺激する|動
+strengthen|強くする|動
+submit|提出する|動
+substitute|代わりにする|動
+summarize|要約する|動
+target|目標にする|動
+transfer|移す|動
+transform|変える|動
+translate|翻訳する|動
+transmit|送る・伝える|動
+underestimate|過小評価する|動
+undertake|引き受ける|動
+unite|結びつける|動
+update|更新する|動
+urge|強く勧める|動
+utilize|利用する|動
+violate|破る・侵害する|動
+verify|確かめる|動
+vote|投票する|動
+warn|警告する|動
+widen|広げる|動
+yield|生み出す・譲る|動
+abandon|捨てる・断念する|動
+absorb|吸収する|動
+accompany|同行する|動
+accomplish|達成する|動
+acknowledge|認める|動
+ability|能力|名
+access|利用する機会・アクセス|名
+account|説明・口座|名
+advantage|利点|名
+advice|助言|名
+amount|量|名
+analysis|分析|名
+anxiety|不安|名
+appeal|魅力・訴え|名
+appearance|外見・出現|名
+application|応募・応用|名
+argument|議論・主張|名
+aspect|側面|名
+attitude|態度|名
+average|平均|名
+background|背景|名
+balance|均衡|名
+barrier|障害|名
+basis|基礎|名
+behavior|行動|名
+belief|信念|名
+budget|予算|名
+capacity|能力・容量|名
+career|職業・経歴|名
+case|場合・事例|名
+character|性格・文字|名
+choice|選択|名
+circumstance|状況|名
+citizen|市民|名
+climate|気候|名
+clue|手がかり|名
+condition|状態・条件|名
+consequence|結果|名
+context|文脈|名
+contrast|対比|名
+cost|費用|名
+courage|勇気|名
+culture|文化|名
+damage|損害|名
+data|データ|名
+debate|討論|名
+decade|10年間|名
+decision|決定|名
+definition|定義|名
+degree|程度・学位|名
+detail|詳細|名
+difference|違い|名
+difficulty|困難|名
+disaster|災害|名
+discipline|規律・学問分野|名
+disease|病気|名
+distance|距離|名
+duty|義務|名
+effect|効果・影響|名
+effort|努力|名
+election|選挙|名
+emotion|感情|名
+employee|従業員|名
+energy|エネルギー|名
+environment|環境|名
+equipment|設備|名
+error|誤り|名
+event|出来事|名
+evidence|証拠|名
+example|例|名
+exception|例外|名
+fact|事実|名
+factor|要因|名
+failure|失敗|名
+freedom|自由|名
+function|機能|名
+goal|目標|名
+growth|成長|名
+habit|習慣|名
+harm|害|名
+health|健康|名
+height|高さ|名
+history|歴史|名
+idea|考え|名
+identity|身元・独自性|名
+image|イメージ・画像|名
+impact|影響|名
+importance|重要性|名
+impression|印象|名
+income|収入|名
+individual|個人|名
+industry|産業|名
+information|情報|名
+intention|意図|名
+interest|関心・利子|名
+knowledge|知識|名
+language|言語|名
+law|法律|名
+level|水準|名
+location|場所|名
+loss|損失|名
+method|方法|名
+model|模型・手本|名
+moment|瞬間|名
+movement|動き・運動|名
+need|必要|名
+network|網・人脈|名
+notion|考え・概念|名
+object|物・目的|名
+occasion|時・場合|名
+opportunity|機会|名
+option|選択肢|名
+origin|起源|名
+outcome|結果|名
+pain|痛み|名
+pattern|型・模様|名
+period|期間|名
+permission|許可|名
+personality|性格|名
+perspective|視点|名
+policy|方針・政策|名
+population|人口|名
+position|位置・立場|名
+possibility|可能性|名
+practice|練習・実行|名
+pressure|圧力|名
+principle|原則|名
+priority|優先事項|名
+process|過程|名
+product|製品|名
+profession|職業|名
+progress|進歩|名
+project|計画・事業|名
+proof|証明|名
+property|財産・性質|名
+purpose|目的|名
+quality|質|名
+quantity|量|名
+range|範囲|名
+rate|割合・速度|名
+reaction|反応|名
+reason|理由|名
+relationship|関係|名
+research|研究|名
+resource|資源|名
+responsibility|責任|名
+risk|危険|名
+role|役割|名
+rule|規則|名
+safety|安全|名
+scale|規模・尺度|名
+scene|場面|名
+section|部分・部門|名
+sense|感覚・意味|名
+service|サービス|名
+situation|状況|名
+skill|技能|名
+source|情報源・源|名
+space|空間|名
+standard|基準|名
+status|地位・状態|名
+strength|強さ・長所|名
+stress|ストレス・強調|名
+structure|構造|名
+subject|主題・科目|名
+success|成功|名
+suggestion|提案|名
+supply|供給|名
+surface|表面|名
+survey|調査|名
+task|仕事・課題|名
+technique|技術|名
+technology|科学技術|名
+theory|理論|名
+thought|考え|名
+threat|脅威|名
+tradition|伝統|名
+trend|傾向|名
+value|価値|名
+variety|多様性|名
+view|見解・眺め|名
+violence|暴力|名
+voice|声・意見|名
+wealth|富|名
+welfare|福祉|名
+work|仕事・作品|名
+youth|若者時代|名
+authority|権威・当局|名
+vehicle|乗り物・手段|名
+victim|被害者|名
+vision|視野・未来像|名
+volume|量・巻|名
+warning|警告|名
+weapon|武器|名
+witness|目撃者・証人|名
+zone|地域・区域|名
+absence|不在|名
+abuse|乱用・虐待|名
+achievement|達成|名
+action|行動|名
+addition|追加|名
+admission|入場・入学許可|名
+advertisement|広告|名
+agency|機関・代理店|名
+agreement|合意|名
+able|できる|形
+active|活動的な|形
+actual|実際の|形
+additional|追加の|形
+afraid|恐れている|形
+alike|似ている|形
+alone|ひとりで|形
+alternative|代わりの・別の|形
+ancient|古代の|形
+angry|怒った|形
+annual|毎年の|形
+appropriate|適切な|形
+aware|気づいている|形
+basic|基本的な|形
+beneficial|有益な|形
+brief|短い|形
+broad|幅広い|形
+capable|能力がある|形
+certain|確かな・ある|形
+civil|市民の・礼儀正しい|形
+clear|明らかな|形
+common|共通の・普通の|形
+complex|複雑な|形
+conscious|意識している|形
+constant|絶え間ない|形
+contemporary|現代の・同時代の|形
+convenient|便利な|形
+correct|正しい|形
+crucial|非常に重要な|形
+cultural|文化の|形
+current|現在の|形
+dangerous|危険な|形
+deep|深い|形
+detailed|詳しい|形
+direct|直接の|形
+distinct|はっきり異なる|形
+diverse|多様な|形
+domestic|国内の・家庭の|形
+dramatic|劇的な|形
+effective|効果的な|形
+efficient|効率的な|形
+electrical|電気の|形
+emotional|感情の|形
+enormous|巨大な|形
+equal|等しい|形
+essential|必要不可欠な|形
+ethical|倫理的な|形
+exact|正確な|形
+existing|現存の|形
+familiar|よく知られた|形
+final|最後の|形
+financial|財政の・金融の|形
+formal|正式な|形
+fundamental|基本的な|形
+general|一般的な|形
+global|世界的な|形
+grateful|感謝している|形
+harmful|有害な|形
+healthy|健康な|形
+historical|歴史上の|形
+ideal|理想的な|形
+illegal|違法の|形
+immediate|即座の|形
+independent|独立した|形
+industrial|産業の|形
+initial|最初の|形
+inner|内側の|形
+international|国際的な|形
+legal|合法の|形
+likely|ありそうな|形
+local|地元の|形
+major|主な・専攻の|形
+mental|精神の|形
+modern|現代の|形
+national|国の|形
+natural|自然の|形
+negative|否定的な|形
+nervous|緊張した|形
+normal|普通の|形
+obvious|明らかな|形
+official|公式の|形
+ordinary|普通の|形
+original|独自の・最初の|形
+overall|全体の|形
+particular|特定の|形
+physical|身体の|形
+positive|前向きな・肯定的な|形
+possible|可能な|形
+practical|実用的な|形
+precious|貴重な|形
+previous|以前の|形
+primary|主な・第一の|形
+private|私的な|形
+professional|専門の|形
+public|公共の|形
+rare|珍しい|形
+real|本当の|形
+relative|相対的な|形
+relevant|関連した|形
+responsible|責任がある|形
+scientific|科学的な|形
+serious|深刻な・真剣な|形
+similar|似ている|形
+simple|簡単な|形
+social|社会の|形
+specific|特定の・具体的な|形
+stable|安定した|形
+strange|奇妙な|形
+successful|成功した|形
+sufficient|十分な|形
+suitable|適した|形
+technical|技術的な|形
+traditional|伝統的な|形
+typical|典型的な|形
+unique|独特の・唯一の|形
+universal|普遍的な|形
+useful|役に立つ|形
+valuable|価値のある|形
+various|さまざまな|形
+visible|見える|形
+willing|進んで～する|形
+widespread|広く普及した|形
+abundant|豊富な|形
+accurate|正確な|形
+aggressive|積極的な・攻撃的な|形
+apparent|明らかな・見かけの|形
+attractive|魅力的な|形
+available|利用できる|形
+bare|むき出しの|形
+biased|偏見のある|形
+bold|大胆な|形
+central|中心の|形
+challenging|やりがいのある・難しい|形
+chief|主な|形
+collective|集団の|形
+competitive|競争力のある|形
+confident|自信のある|形
+conservative|保守的な|形
+considerable|かなりの|形
+consistent|一貫した|形
+critical|批判的な・重要な|形
+curious|好奇心の強い|形
+daily|毎日の|形
+delicate|繊細な|形
+desperate|必死の|形
+digital|デジタルの|形
+distant|遠い|形
+dynamic|活発な・変化する|形
+economic|経済の|形
+educational|教育の|形
+elderly|高齢の|形
+environmental|環境の|形
+equivalent|同等の|形
+extraordinary|並外れた|形
+extreme|極端な|形
+flexible|柔軟な|形
+former|以前の|形
+frequent|頻繁な|形
+genetic|遺伝の|形
+gradual|徐々の|形
+indirect|間接的な|形
+informal|非公式の|形
+innocent|無罪の・無邪気な|形
+intelligent|知的な|形
+intense|激しい|形
+internal|内部の|形
+leading|一流の・主な|形
+limited|限られた|形
+literary|文学の|形
+logical|論理的な|形
+massive|巨大な|形
+minimum|最小の|形
+minor|小さい・副次の|形
+moral|道徳的な|形
+mutual|相互の|形
+narrow|狭い|形
+native|生まれつきの・母国の|形
+necessary|必要な|形
+numerous|多数の|形
+occasional|時々の|形
+optimistic|楽観的な|形
+permanent|永久の|形
+personal|個人的な|形
+political|政治の|形
+popular|人気のある|形
+potential|潜在的な|形
+psychological|心理的な|形
+regional|地域の|形
+remarkable|注目すべき|形
+remote|遠く離れた|形
+representative|代表的な|形
+rural|田舎の|形
+secure|安全な・確保する|形
+senior|年上の・上級の|形
+severe|厳しい・深刻な|形
+significant|重要な・かなりの|形
+slight|わずかな|形
+smart|賢い|形
+steady|安定した|形
+temporary|一時的な|形
+absolutely|完全に|副
+actually|実際に|副
+additionally|さらに|副
+almost|ほとんど|副
+already|すでに|副
+also|～もまた|副
+although|～だけれども|接
+altogether|全く・合計で|副
+apparently|どうやら|副
+approximately|およそ|副
+aside|わきに・別に|副
+basically|基本的に|副
+certainly|確かに|副
+consequently|したがって|副
+considerably|かなり|副
+constantly|絶えず|副
+currently|現在|副
+deeply|深く|副
+definitely|間違いなく|副
+despite|～にもかかわらず|前
+directly|直接に|副
+especially|特に|副
+eventually|ついに|副
+exactly|正確に|副
+extremely|極めて|副
+fairly|かなり・公平に|副
+finally|ついに・最後に|副
+formerly|以前は|副
+frequently|頻繁に|副
+generally|一般に|副
+gradually|徐々に|副
+hardly|ほとんど～ない|副
+however|しかし|副
+immediately|すぐに|副
+instead|代わりに|副
+just|ちょうど・ただ|副
+largely|主に|副
+later|後で|副
+meanwhile|その間に|副
+moreover|その上|副
+nearly|ほとんど|副
+nevertheless|それにもかかわらず|副
+normally|通常は|副
+obviously|明らかに|副
+often|しばしば|副
+otherwise|さもなければ|副
+particularly|特に|副
+perhaps|おそらく|副
+possibly|ひょっとすると|副
+probably|たぶん|副
+quickly|速く|副
+quite|かなり・全く|副
+rather|むしろ・かなり|副
+really|本当に|副
+recently|最近|副
+relatively|比較的|副
+roughly|おおよそ|副
+simply|簡単に・単に|副
+slightly|わずかに|副
+slowly|ゆっくり|副
+sometimes|時々|副
+still|まだ・それでも|副
+suddenly|突然|副
+than|～より|接
+therefore|それゆえ|副
+though|～だけれども|接
+thus|このように・したがって|副
+together|一緒に|副
+too|～もまた・あまりに|副
+usually|通常|副
+whereas|～であるのに対し|接
+yet|まだ・しかし|副
+above|上に・上記の|副
+abroad|海外へ・で|副
+ahead|前方に・前もって|副
+below|下に・以下に|副
+beyond|～を越えて|前
+besides|その上・～のほかに|副
+during|～の間|前
+except|～を除いて|前
+inside|内側に・内側の|副
+nearby|近くに|副
+once|一度・かつて|副
+outside|外に・外側の|副
+throughout|～の間ずっと|前
+toward|～の方へ|前
+underneath|～の下に|前
+accordingly|それに応じて|副
+afterward|後で|副
+beforehand|前もって|副
+continuously|継続して|副
+deliberately|意図的に|副
+equally|等しく|副
+formally|正式に|副
+forever|永遠に|副
+furthermore|さらに|副
+hence|それゆえ|副
+indeed|実に・実際に|副
+merely|単に|副
+mostly|主に|副
+academic|学問の・大学の|形
+agriculture|農業|名
+atmosphere|大気・雰囲気|名
+audience|聴衆・観客|名
+biology|生物学|名
+carbon|炭素|名
+chemistry|化学|名
+continent|大陸|名
+crime|犯罪|名
+democracy|民主主義|名
+economy|経済|名
+education|教育|名
+emergency|緊急事態|名
+engineering|工学|名
+entertainment|娯楽|名
+evolution|進化|名
+experiment|実験|名
+facility|施設|名
+finance|財政・金融|名
+fuel|燃料|名
+geography|地理学|名
+government|政府|名
+grammar|文法|名
+gravity|重力|名
+inequality|不平等|名
+institution|機関・制度|名
+intelligence|知能・情報|名
+journalism|報道・ジャーナリズム|名
+justice|正義・司法|名
+literature|文学|名
+machine|機械|名
+material|材料・資料|名
+medicine|医学・薬|名
+migration|移住|名
+minority|少数派|名
+nature|自然・性質|名
+nutrition|栄養|名
+organization|組織|名
+pollution|汚染|名
+poverty|貧困|名
+psychology|心理学|名
+radiation|放射線|名
+religion|宗教|名
+revolution|革命|名
+satellite|人工衛星|名
+science|科学|名
+society|社会|名
+software|ソフトウェア|名
+species|種|名
+speech|話・演説|名
+statistics|統計|名
+strategy|戦略|名
+transport|輸送・交通|名
+university|大学|名
+universe|宇宙|名
+volunteer|ボランティア|名
+wildlife|野生生物|名
+workplace|職場|名
+architecture|建築|名
+artificial|人工の|形
+astronomy|天文学|名
+bacteria|細菌|名
+battery|電池|名
+boundary|境界|名
+campaign|運動・キャンペーン|名
+cell|細胞|名
+ceremony|式典|名
+channel|経路・チャンネル|名
+chemical|化学物質|名
+circuit|回路|名
+civilization|文明|名
+colony|植民地・群体|名
+commerce|商業|名
+communication|通信・伝達|名
+competition|競争|名
+conservation|保護・保存|名
+construction|建設|名
+consumer|消費者|名
+corporation|企業|名
+currency|通貨|名
+demonstration|実演・デモ|名
+density|密度|名
+device|装置|名
+diet|食事・食生活|名
+dimension|次元・寸法|名
+discovery|発見|名
+distribution|分配・流通|名
+diversity|多様性|名
+domination|支配|名
+drama|劇・ドラマ|名
+economics|経済学|名
+ecology|生態学|名
+ecosystem|生態系|名
+element|要素|名
+emission|排出|名
+employer|雇用主|名
+employment|雇用|名
+engine|エンジン|名
+episode|出来事・回|名
+era|時代|名
+abstract|抽象的な・要旨|形
+accommodate|収容する・適応する|動
+accumulate|蓄積する|動
+adequate|十分な|形
+ambiguous|あいまいな|形
+arbitrary|恣意的な|形
+attain|達成する|動
+autonomous|自治の・自律した|形
+bias|偏見|名
+cease|やめる|動
+coherent|首尾一貫した|形
+coincide|同時に起こる・一致する|動
+collapse|崩壊する|動
+compile|編集する・まとめる|動
+complement|補うもの|名
+comprise|構成する|動
+conceive|思いつく・想像する|動
+contradict|矛盾する|動
+contrary|反対の|形
+cooperate|協力する|動
+coordinate|調整する|動
+credible|信頼できる|形
+cumulative|累積する|形
+dedicate|ささげる|動
+defend|守る・弁護する|動
+discriminate|区別する・差別する|動
+disposal|処分|名
+dominate|支配する|動
+duration|期間|名
+empirical|経験に基づく|形
+entity|実体・存在|名
+equip|備え付ける|動
+exploit|利用する・搾取する|動
+explicit|明白な|形
+faculty|能力・学部|名
+format|形式|名
+framework|枠組み|名
+fulfill|果たす|動
+hierarchy|階層|名
+hypothesis|仮説|名
+incentive|動機づけ・奨励金|名
+incorporate|取り入れる|動
+inevitable|避けられない|形
+infrastructure|基盤設備|名
+insight|洞察|名
+integrate|統合する|動
+interval|間隔|名
+isolate|孤立させる|動
+mechanism|仕組み|名
+metaphor|比喩|名
+minimize|最小限にする|動
+nonetheless|それにもかかわらず|副
+ongoing|進行中の|形
+perceive|気づく・知覚する|動
+persist|持続する|動
+phenomenon|現象|名
+preliminary|予備の|形
+regime|政権・体制|名
+regulate|規制する|動
+reinforce|強化する|動
+respective|それぞれの|形
+revenue|収入・歳入|名
+rigid|厳格な・硬い|形
+scenario|筋書き・状況|名
+scope|範囲|名
+sequence|連続・順序|名
+subordinate|従属する・部下|形
+subsequent|その後の|形
+sustain|維持する|動
+symbol|象徴|名
+terrain|地形|名
+tentative|仮の・試験的な|形
+terminate|終える|動
+tolerate|耐える|動
+trigger|引き金・引き起こす|名
+ultimate|最終の|形
+undergo|経験する・受ける|動
+valid|有効な|形
+version|版・型|名
+via|～を経由して|前
+virtual|仮想の・事実上の|形
+volatile|変わりやすい|形
+allocate|割り当てる|動
+articulate|はっきり述べる|動
+assess|評価する|動
+behalf|～の代わりに|名
+bond|絆・結びつき|名
+bulk|大部分・かさ|名
+coincidence|偶然の一致|名
+commodity|商品|名
+compatible|両立できる|形
+compel|強いる|動
+compensate|補償する|動
+comprehensive|包括的な|形
+consent|同意|名
+constraint|制約|名
+consult|相談する|動
+conventional|従来の|形
+controversy|論争|名
+core|中心・核心|名`;
+
+// DATAの並び順は品詞ごとですが、画面では1日10語に品詞が混ざるよう並べ替えます。
+const RAW_WORDS = DATA.trim().split("\n").map((line) => {
+  const [en, ja, pos] = line.split("|");
+  return { en, ja, pos };
+});
+
+function makeMixedWords(rawWords) {
+  const posOrder = ["動", "名", "形", "副", "前", "接"];
+  const groups = Object.fromEntries(
+    posOrder.map(pos => [pos, rawWords.filter(word => word.pos === pos)])
+  );
+  const totals = Object.fromEntries(
+    posOrder.map(pos => [pos, groups[pos].length])
+  );
+
+  const mixed = [];
+  const recentPos = [];
+
+  while (mixed.length < rawWords.length) {
+    const available = posOrder.filter(pos => groups[pos].length > 0);
+
+    // 同じ品詞が3語続かないようにする
+    let candidates = available.filter(pos =>
+      !(recentPos.length >= 2 && recentPos[0] === pos && recentPos[1] === pos)
+    );
+    if (candidates.length === 0) candidates = available;
+
+    // 各品詞の進み具合がなるべく均等になるものを選ぶ
+    candidates.sort((a, b) => {
+      const aRemainingRate = groups[a].length / totals[a];
+      const bRemainingRate = groups[b].length / totals[b];
+      if (aRemainingRate !== bRemainingRate) {
+        return bRemainingRate - aRemainingRate;
+      }
+      return posOrder.indexOf(a) - posOrder.indexOf(b);
+    });
+
+    const selectedPos = candidates[0];
+    mixed.push(groups[selectedPos].shift());
+
+    recentPos.push(selectedPos);
+    if (recentPos.length > 2) recentPos.shift();
+  }
+
+  return mixed.map((word, index) => ({
+    id: index + 1,
+    en: word.en,
+    ja: word.ja,
+    pos: word.pos,
+    chapter: Math.floor(index / 10) + 1
+  }));
+}
+
+const WORDS = makeMixedWords(RAW_WORDS);
+
+if (WORDS.length !== 1000) {
+  throw new Error(`英単語が ${WORDS.length} 語です。1000語必要です。`);
+}
+
+const KEY = "kawaii_blue_english_1000_mixed_v2";
+const OLD_KEY = "kawaii_blue_english_1000";
+
+
+/*
+  GASのウェブアプリURLを、デプロイ後に /exec まで含めて貼り付けてください。
+  例: https://script.google.com/macros/s/AKfycb.../exec
+*/
+const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbztUb8-y6cTvlgnv_0W7-UXBemEHhYWoonlusXE2jhpdD6nYKvSHE5BIesPnfObi0sNQw/exec";
+const RANKING_QUESTION_COUNT = 1000;
+const RANKING_TIME_LIMIT = 10;
+
+let rankingMode = false;
+let rankingAttempt = null;
+let rankingSubmitting = false;
+const state = { chapter: 1, current: 1, learned: [], weak: [], quizMode: "chapter", timeLimit: 15, quiz: null, all: false };
+
+let quizTimer = null;
+let quizDeadline = 0;
+let qCount = 0;      
+let qCorrect = 0;    
+let qMax = 10;       
+
+// 新しく追加：重複出題を防ぐためのキュー
+let quizQueue = [];
+
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => [...document.querySelectorAll(s)];
+const get = (id) => WORDS[id - 1];
+const chapterWords = () => WORDS.filter(w => w.chapter === state.chapter);
+const learnedSet = () => new Set(state.learned);
+const weakSet = () => new Set(state.weak);
+
+function save() {
+  localStorage.setItem(KEY, JSON.stringify({
+    chapter: state.chapter, current: state.current,
+    learned: state.learned, weak: state.weak,
+    timeLimit: state.timeLimit
+  }));
+}
+
+function migrateOldIds(oldIds = []) {
+  return [...new Set(oldIds.map(oldId => {
+    const oldWord = RAW_WORDS[oldId - 1];
+    const newWord = oldWord && WORDS.find(word => word.en === oldWord.en);
+    return newWord ? newWord.id : null;
+  }).filter(Boolean))].sort((a, b) => a - b);
+}
+
+function load() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY));
+    if (saved) {
+      Object.assign(state, saved);
+      return;
+    }
+
+    // 旧版の「覚えた」「苦手」記録があれば、新しい並び順へ引き継ぐ
+    const oldSaved = JSON.parse(localStorage.getItem(OLD_KEY));
+    if (oldSaved) {
+      state.learned = migrateOldIds(oldSaved.learned);
+      state.weak = migrateOldIds(oldSaved.weak);
+      state.timeLimit = Number(oldSaved.timeLimit) || state.timeLimit;
+      save();
+    }
+  } catch (e) {}
+}
+
+function updateProgress() {
+  $("#progress").textContent = `${state.learned.length} / 1000語`;
+  $("#bar").style.width = `${state.learned.length / 10}%`;
+}
+
+function renderChapter() {
+  const select = $("#chapter");
+  select.innerHTML = "";
+  for (let n = 1; n <= 100; n++) {
+    const start = (n - 1) * 10 + 1;
+    const done = WORDS.filter(w => w.chapter === n && state.learned.includes(w.id)).length;
+    select.innerHTML += `<option value="${n}">Chapter ${n}（${start}〜${start + 9}語） ${done}/10</option>`;
+  }
+  select.value = state.chapter;
+}
+
+function showMeaning() {
+  $("#ja").classList.add("show");
+  $("#tap").style.display = "none";
+}
+
+function renderCard() {
+  const word = get(state.current);
+  $("#en").textContent = word.en;
+  $("#ja").textContent = word.ja;
+  $("#pos").textContent = word.pos;
+  $("#count").textContent = `${((word.id - 1) % 10) + 1} / 10`;
+  $("#ja").classList.remove("show");
+  $("#tap").style.display = "block";
+}
+
+function renderWordButtons() {
+  const learned = learnedSet(), weak = weakSet();
+  $("#wordButtons").innerHTML = chapterWords().map((word, i) => {
+    let cls = "word";
+    if (word.id === state.current) cls += " now";
+    if (learned.has(word.id)) cls += " ok";
+    if (weak.has(word.id)) cls += " bad";
+    return `<button class="${cls}" data-id="${word.id}">${i + 1}. ${word.en}</button>`;
+  }).join("");
+
+  $$("#wordButtons button").forEach(btn => {
+    btn.onclick = () => {
+      state.current = Number(btn.dataset.id);
+      save(); renderCard(); renderWordButtons();
+    };
+  });
+}
+
+function renderAll() {
+  updateProgress(); renderChapter(); renderCard(); renderWordButtons(); renderList();
+}
+
+function mark(type) {
+  const learned = learnedSet(), weak = weakSet();
+  if (type === "learn") {
+    learned.add(state.current); weak.delete(state.current);
+  } else {
+    weak.add(state.current); learned.delete(state.current);
+  }
+  state.learned = [...learned].sort((a,b) => a - b);
+  state.weak = [...weak].sort((a,b) => a - b);
+  save(); renderAll(); showMeaning();
+}
+
+function next() {
+  const list = chapterWords();
+  let i = list.findIndex(w => w.id === state.current);
+  state.current = list[(i + 1) % list.length].id;
+  save(); renderCard(); renderWordButtons();
+}
+
+function speak() {
+  if (!("speechSynthesis" in window)) return alert("ごめんね、このブラウザでは発音を使えないみたい🥲");
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(get(state.current).en);
+  u.lang = "en-US"; u.rate = 0.8;
+  speechSynthesis.speak(u);
+}
+
+function shuffle(list) {
+  return [...list].sort(() => Math.random() - 0.5);
+}
+
+function quizPool() {
+  if (state.quizMode === "random") return WORDS;
+  if (state.quizMode === "weak") return WORDS.filter(w => weakSet().has(w.id));
+  return chapterWords();
+}
+
+function clearQuizTimer() {
+  if (quizTimer) clearInterval(quizTimer);
+  quizTimer = null;
+}
+
+function showTimer(seconds) {
+  const timer = $("#timer");
+  $("#timeLeft").textContent = seconds;
+  timer.classList.toggle("danger", seconds <= 5);
+}
+
+function currentTimeLimit() {
+  return rankingMode ? RANKING_TIME_LIMIT : state.timeLimit;
+}
+
+function isGasConfigured() {
+  return /^https:\/\/script\.google\.com\/macros\/s\/.+\/exec(?:\?.*)?$/i.test(GAS_WEB_APP_URL);
+}
+
+function openModal(id) {
+  $("#" + id).classList.add("open");
+}
+
+function closeModal(id) {
+  $("#" + id).classList.remove("open");
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>'"]/g, ch => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;"
+  }[ch]));
+}
+
+function formatDuration(ms) {
+  const seconds = Math.max(0, Math.round(Number(ms || 0) / 1000));
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+  return h ? `${h}時間${String(m).padStart(2, "0")}分${String(s).padStart(2, "0")}秒` : `${m}分${String(s).padStart(2, "0")}秒`;
+}
+
+function jsonp(action, params = {}) {
+  if (!isGasConfigured()) {
+    return Promise.reject(new Error("GASのウェブアプリURLがまだ設定されていません。"));
+  }
+
+  return new Promise((resolve, reject) => {
+    const callback = `rankingCallback_${Date.now()}_${Math.random().toString(36).slice(2)}`;
+    const query = new URLSearchParams({ action, callback, ...params });
+    const script = document.createElement("script");
+    const timeout = setTimeout(() => finish(new Error("GASへの接続がタイムアウトしました。")), 15000);
+
+    function cleanup() {
+      clearTimeout(timeout);
+      delete window[callback];
+      script.remove();
+    }
+
+    function finish(error, data) {
+      cleanup();
+      if (error) reject(error);
+      else if (!data || !data.ok) reject(new Error((data && data.message) || "ランキング処理に失敗しました。"));
+      else resolve(data);
+    }
+
+    window[callback] = data => finish(null, data);
+    script.onerror = () => finish(new Error("GASへ接続できませんでした。URL・デプロイ設定を確認してください。"));
+    script.src = `${GAS_WEB_APP_URL}${GAS_WEB_APP_URL.includes("?") ? "&" : "?"}${query.toString()}`;
+    document.body.appendChild(script);
+  });
+}
+
+function setRankingUi(active) {
+  $("#normalQuizControls").style.display = active ? "none" : "flex";
+  $("#rankingPanel").style.display = active ? "none" : "flex";
+  $("#rankingQuitBtn").classList.toggle("show", active);
+  $("#quizStartArea").style.display = active ? "none" : "block";
+  $("#quizQuestionGuide").textContent = active
+    ? "1000問チャレンジ中。1問10秒、最後まで答えよう！"
+    : "出題範囲と制限時間を選んで、スタートボタンを押そう！";
+}
+
+function showRankingStatus(message) {
+  const el = $("#rankingStatus");
+  el.textContent = message || "";
+  el.classList.toggle("show", Boolean(message));
+}
+
+/* 通常クイズの開始前画面。ここでは問題もタイマーも動かさない。 */
+function prepareNormalQuiz() {
+  if (rankingMode) return;
+
+  rankingAttempt = null;
+  rankingSubmitting = false;
+  qCount = 0;
+  qCorrect = 0;
+  qMax = 0;
+  quizQueue = [];
+  state.quiz = null;
+  clearQuizTimer();
+
+  setRankingUi(false);
+  showRankingStatus("");
+  $("#quizResultArea").style.display = "none";
+  $("#quizPlayArea").style.display = "block";
+  $("#quizProgressText").textContent = "準備ができたらスタート！";
+  $("#qword").textContent = "クイズをはじめよう";
+  $("#options").innerHTML = "";
+  $("#feedback").textContent = "";
+  $("#timer").classList.remove("danger");
+  $("#timeLeft").textContent = state.timeLimit;
+  $("#quizStartBtn").disabled = false;
+  $("#quizStartBtn").textContent = "クイズをはじめる 🫧";
+  $("#quizStartArea").style.display = "block";
+  $("#quizNext").classList.remove("show");
+  $("#quizFinishBtn").classList.remove("show");
+}
+
+function startQuizSession() {
+  rankingMode = false;
+  rankingAttempt = null;
+  rankingSubmitting = false;
+  qCount = 0;
+  qCorrect = 0;
+  clearQuizTimer();
+  setRankingUi(false);
+  showRankingStatus("");
+  $("#quizResultArea").style.display = "none";
+  $("#quizPlayArea").style.display = "block";
+  $("#quizStartArea").style.display = "none";
+
+  const pool = quizPool();
+  if (!pool.length) {
+    prepareNormalQuiz();
+    $("#feedback").textContent = "苦手単語がまだありません。カードか通常クイズで苦手単語を作ってから挑戦しよう！";
+    $("#feedback").style.color = "var(--red-dark)";
+    return;
+  }
+
+  quizQueue = shuffle(pool);
+  qMax = state.quizMode === "chapter" ? Math.min(10, quizQueue.length) : Infinity;
+  newQuiz();
+}
+
+async function requestRankingChallenge() {
+  if (!isGasConfigured()) {
+    alert("先にHTML内の GAS_WEB_APP_URL へ、GASをウェブアプリとしてデプロイした /exec URL を貼り付けてください。");
+    return;
+  }
+  $("#nicknameInput").value = "";
+  $("#nicknameError").textContent = "";
+  openModal("nicknameModal");
+  setTimeout(() => $("#nicknameInput").focus(), 50);
+}
+
+async function startRankingChallenge() {
+  const nickname = $("#nicknameInput").value.trim().replace(/\s+/g, " ");
+  const error = $("#nicknameError");
+  if (!nickname) {
+    error.textContent = "ニックネームを入力してください。";
+    return;
+  }
+  if (nickname.length > 12) {
+    error.textContent = "ニックネームは12文字以内にしてください。";
+    return;
+  }
+
+  const button = $("#startRankingBtn");
+  button.disabled = true;
+  button.textContent = "準備中…";
+  error.textContent = "";
+
+  try {
+    const attemptId = (window.crypto && typeof window.crypto.randomUUID === "function")
+      ? window.crypto.randomUUID()
+      : `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+    const result = await jsonp("start", { attemptId });
+    rankingMode = true;
+    rankingAttempt = { nickname, token: result.token, attemptId };
+    qCount = 0;
+    qCorrect = 0;
+    qMax = RANKING_QUESTION_COUNT;
+    quizQueue = shuffle(WORDS);
+    clearQuizTimer();
+    setRankingUi(true);
+    showRankingStatus(`🏆 ${nickname} さんが1000問チャレンジに挑戦中です`);
+    $("#quizResultArea").style.display = "none";
+    $("#quizPlayArea").style.display = "block";
+    closeModal("nicknameModal");
+    newQuiz();
+  } catch (err) {
+    error.textContent = err.message || "開始できませんでした。";
+  } finally {
+    button.disabled = false;
+    button.textContent = "この名前で挑戦する";
+  }
+}
+
+function abandonRankingChallenge() {
+  if (!rankingMode) return;
+  if (!confirm("1000問チャレンジを中断しますか？\n途中の記録はランキングへ保存されません。")) return;
+  rankingMode = false;
+  rankingAttempt = null;
+  clearQuizTimer();
+  state.quiz = null;
+  prepareNormalQuiz();
+}
+
+function newQuiz() {
+  clearQuizTimer();
+  $("#feedback").textContent = "";
+  $("#quizNext").classList.remove("show");
+  $("#quizFinishBtn").classList.remove("show");
+  $("#timeLimit").value = String(state.timeLimit);
+  $("#timer").classList.remove("danger");
+  showTimer(currentTimeLimit());
+
+  if (quizQueue.length === 0 || (qMax !== Infinity && qCount >= qMax)) {
+    if (qCount > 0) showQuizResult();
+    else {
+      $("#qword").textContent = "空っぽ！🩵";
+      $("#options").innerHTML = `<div class="empty">苦手単語はまだないみたい！✨</div>`;
+      $("#quizProgressText").textContent = "";
+      state.quiz = null;
+    }
+    return;
+  }
+
+  qCount++;
+  if (rankingMode) {
+    $("#quizProgressText").textContent = `🏆 第 ${qCount} 問 / 全 1000 問`;
+  } else if (qMax !== Infinity) {
+    $("#quizProgressText").textContent = `☁️ 第 ${qCount} 問 / 全 ${qMax} 問 ☁️`;
+  } else {
+    $("#quizProgressText").textContent = `☁️ ${qCount} 問目 ☁️`;
+  }
+
+  const answer = quizQueue.shift();
+  const other = shuffle(WORDS.filter(w => w.id !== answer.id)).slice(0, 3);
+  state.quiz = { answer, choices: shuffle([answer, ...other]), answered: false };
+
+  $("#qword").textContent = answer.en;
+  $("#options").innerHTML = state.quiz.choices.map(w =>
+    `<button class="btn option" data-id="${w.id}">${escapeHtml(w.ja)}</button>`
+  ).join("");
+
+  $$(".option").forEach(btn => btn.onclick = () => answerQuiz(Number(btn.dataset.id), btn));
+  startQuizTimer();
+}
+
+function startQuizTimer() {
+  clearQuizTimer();
+  if (!state.quiz || state.quiz.answered) return;
+  const timeLimit = currentTimeLimit();
+  quizDeadline = Date.now() + timeLimit * 1000;
+  showTimer(timeLimit);
+  quizTimer = setInterval(() => {
+    const remaining = Math.max(0, Math.ceil((quizDeadline - Date.now()) / 1000));
+    showTimer(remaining);
+    if (remaining <= 0) timeUp();
+  }, 200);
+}
+
+function answerQuiz(id, clicked) {
+  if (!state.quiz || state.quiz.answered) return;
+  finishQuiz(id === state.quiz.answer.id, clicked, false);
+}
+
+function timeUp() {
+  if (!state.quiz || state.quiz.answered) return;
+  finishQuiz(false, null, true);
+}
+
+function finishQuiz(right, clicked, timedOut) {
+  state.quiz.answered = true;
+  clearQuizTimer();
+
+  const learned = learnedSet();
+  const weak = weakSet();
+  const answer = state.quiz.answer;
+  $$(".option").forEach(btn => {
+    btn.disabled = true;
+    if (Number(btn.dataset.id) === answer.id) btn.classList.add("correct");
+  });
+
+  if (right) {
+    qCorrect++;
+    learned.add(answer.id);
+    weak.delete(answer.id);
+    $("#feedback").innerHTML = `✨ 大正解！<br><span style="font-size:1.5rem;">${escapeHtml(answer.en)} ＝ ${escapeHtml(answer.ja)}</span>`;
+    $("#feedback").style.color = "var(--green-dark)";
+  } else {
+    weak.add(answer.id);
+    learned.delete(answer.id);
+    if (clicked) clicked.classList.add("wrong");
+    $("#feedback").innerHTML = timedOut
+      ? `⏳ タイムアップ！<br>「${escapeHtml(answer.ja)}」を苦手リストに入れたよ🩵`
+      : `💦 おしい！ 正解は「${escapeHtml(answer.ja)}」<br>苦手リストに入れたよ🩵`;
+    $("#feedback").style.color = "var(--red-dark)";
+    showTimer(0);
+  }
+
+  state.learned = [...learned].sort((a, b) => a - b);
+  state.weak = [...weak].sort((a, b) => a - b);
+  save();
+  updateProgress();
+  renderChapter();
+  renderWordButtons();
+  renderList();
+
+  const finished = quizQueue.length === 0 || (qMax !== Infinity && qCount >= qMax);
+  $("#quizNext").textContent = finished ? "結果を見る 👀" : "次の問題へ 🪄";
+  $("#quizNext").classList.add("show");
+  if (!rankingMode && qMax === Infinity && qCount > 0) $("#quizFinishBtn").classList.add("show");
+}
+
+async function showQuizResult() {
+  clearQuizTimer();
+  if (rankingMode && qCount < RANKING_QUESTION_COUNT) return;
+  $("#quizPlayArea").style.display = "none";
+  $("#quizResultArea").style.display = "block";
+  $("#rankingSaving").classList.remove("show");
+  $("#quizRetry").classList.toggle("show", !rankingMode);
+  $("#rankingRetry").classList.toggle("show", rankingMode);
+  $("#viewRankingFromResult").classList.toggle("show", rankingMode);
+
+  const resText = $("#quizResultText");
+  if (!rankingMode) {
+    $("#quizResultTitle").textContent = "クイズおつかれさま！";
+    if (qMax !== Infinity) {
+      resText.innerHTML = `${qCount}問中、<span style="color:var(--main); font-size:1.8rem;">${qCorrect}問</span> 正解したよ！✨<br>`;
+      if (qCorrect === qMax && qMax > 0) resText.innerHTML += "ぜんぶ正解！天才かも...！？👑";
+      else if (qCorrect >= qMax * 0.7) resText.innerHTML += "すっごくがんばったね！🐬";
+      else resText.innerHTML += "その調子でがんばろう！💪";
+    } else {
+      resText.innerHTML = `今回は ${qCount}問中、<span style="color:var(--main); font-size:1.8rem;">${qCorrect}問</span> 正解できたよ！<br>自分のペースでがんばってえらいっ🩵`;
+    }
+    return;
+  }
+
+  $("#quizResultTitle").textContent = "🏆 1000問チャレンジ完走！";
+  resText.innerHTML = `${escapeHtml(rankingAttempt.nickname)} さんは、<br><span style="color:var(--main); font-size:2rem;">${qCorrect} / 1000問</span> 正解！`;
+  await submitRankingResult();
+}
+
+async function submitRankingResult() {
+  if (!rankingAttempt || rankingSubmitting) return;
+  rankingSubmitting = true;
+  const saving = $("#rankingSaving");
+  saving.textContent = "ランキングへ記録しています…";
+  saving.classList.add("show");
+
+  try {
+    const result = await jsonp("submit", {
+      token: rankingAttempt.token,
+      attemptId: rankingAttempt.attemptId,
+      nickname: rankingAttempt.nickname,
+      score: qCorrect
+    });
+    saving.textContent = `ランキングへ記録しました！ 記録時間：${formatDuration(result.record.durationMs)}`;
+    showRankingStatus(`🏆 ${rankingAttempt.nickname} さんの結果をランキングに記録しました`);
+  } catch (err) {
+    saving.textContent = `記録できませんでした：${err.message || "GASの設定を確認してください。"}`;
+  } finally {
+    rankingSubmitting = false;
+  }
+}
+
+async function openRanking() {
+  openModal("rankingModal");
+  const list = $("#rankingList");
+  list.innerHTML = `<div class="empty">読み込み中…</div>`;
+  try {
+    const result = await jsonp("ranking");
+    renderRanking(result.rankings || []);
+  } catch (err) {
+    list.innerHTML = `<div class="empty">ランキングを読み込めませんでした。<br>${escapeHtml(err.message || "GASの設定を確認してください。")}</div>`;
+  }
+}
+
+function renderRanking(records) {
+  const list = $("#rankingList");
+  if (!records.length) {
+    list.innerHTML = `<div class="empty">まだ記録がありません。<br>最初の挑戦者になろう！</div>`;
+    return;
+  }
+  list.innerHTML = records.map((record, index) => {
+    const top = index < 3 ? ` top${index + 1}` : "";
+    const medal = index === 0 ? "🥇" : index === 1 ? "🥈" : index === 2 ? "🥉" : `${index + 1}位`;
+    return `<div class="ranking-row${top}">
+      <div class="ranking-rank">${medal}</div>
+      <div class="ranking-name">${escapeHtml(record.nickname)}</div>
+      <div class="ranking-score">${record.score} / 1000<br><small>${formatDuration(record.durationMs)}</small></div>
+    </div>`;
+  }).join("");
+}
+
+function renderList() {
+  const q = $("#search").value.trim().toLowerCase();
+  const weak = weakSet();
+  const list = WORDS.filter(w => {
+    const hit = w.en.toLowerCase().includes(q) || w.ja.includes(q);
+    return hit && (state.all || weak.has(w.id));
+  }).slice(0, 200);
+
+  if (!list.length) {
+    $("#list").innerHTML = `<div class="empty">${state.all ? "見つからないみたい...💭" : "苦手単語はまだないよ！えらいっ✨"}</div>`;
+    return;
+  }
+
+  $("#list").innerHTML = `<div class="list">${list.map(w =>
+    `<div class="item"><div><b>${escapeHtml(w.en)}</b><span>${escapeHtml(w.ja)} ／ ${escapeHtml(w.pos)}</span></div><button class="btn" data-id="${w.id}">見る 👀</button></div>`
+  ).join("")}</div>`;
+
+  $$("#list button").forEach(btn => {
+    btn.onclick = () => {
+      const word = get(Number(btn.dataset.id));
+      state.chapter = word.chapter;
+      state.current = word.id;
+      save();
+      renderAll();
+      showPage("card");
+    };
+  });
+}
+
+function showPage(page) {
+  if (rankingMode && page !== "quiz") {
+    if (!confirm("ランキング挑戦を中断しますか？\n途中の記録はランキングへ保存されません。")) return;
+    rankingMode = false;
+    rankingAttempt = null;
+    state.quiz = null;
+  }
+
+  $$(".tab").forEach(tab => tab.classList.toggle("active", tab.dataset.page === page));
+  $$(".screen").forEach(screen => screen.classList.toggle("active", screen.id === page));
+
+  if (page === "quiz") {
+    if (!rankingMode) prepareNormalQuiz();
+  } else {
+    clearQuizTimer();
+  }
+  if (page === "weak") renderList();
+}
+
+$$(".tab").forEach(tab => tab.onclick = () => showPage(tab.dataset.page));
+$$("[data-close-modal]").forEach(btn => btn.onclick = () => closeModal(btn.dataset.closeModal));
+$$(".modal").forEach(modal => modal.onclick = e => { if (e.target === modal) closeModal(modal.id); });
+
+$("#chapter").onchange = e => {
+  state.chapter = Number(e.target.value);
+  state.current = chapterWords()[0].id;
+  save();
+  renderAll();
+  if ($("#quiz").classList.contains("active") && !rankingMode) prepareNormalQuiz();
+};
+$("#quizMode").onchange = e => {
+  state.quizMode = e.target.value;
+  if (!rankingMode) prepareNormalQuiz();
+};
+$("#timeLimit").onchange = e => {
+  state.timeLimit = Number(e.target.value);
+  save();
+  if (!rankingMode) prepareNormalQuiz();
+};
+
+$("#cardBox").onclick = showMeaning;
+$("#speak").onclick = speak;
+$("#weakBtn").onclick = () => mark("weak");
+$("#learnBtn").onclick = () => mark("learn");
+$("#nextBtn").onclick = next;
+$("#quizStartBtn").onclick = startQuizSession;
+$("#quizNext").onclick = newQuiz;
+$("#quizFinishBtn").onclick = () => { if (!rankingMode) showQuizResult(); };
+$("#quizRetry").onclick = prepareNormalQuiz;
+$("#rankingChallengeBtn").onclick = requestRankingChallenge;
+$("#rankingRetry").onclick = requestRankingChallenge;
+$("#startRankingBtn").onclick = startRankingChallenge;
+$("#openRankingBtn").onclick = openRanking;
+$("#viewRankingFromResult").onclick = openRanking;
+$("#rankingQuitBtn").onclick = abandonRankingChallenge;
+$("#nicknameInput").onkeydown = e => { if (e.key === "Enter") startRankingChallenge(); };
+
+$("#search").oninput = () => { state.all = true; $("#toggleList").textContent = "苦手だけを見る 👀"; renderList(); };
+$("#toggleList").onclick = () => {
+  state.all = !state.all;
+  $("#toggleList").textContent = state.all ? "苦手だけを見る 👀" : "全1000語を見る 📖";
+  renderList();
+};
+
+window.onkeydown = e => {
+  if (e.key === "Escape") $$(".modal.open").forEach(modal => closeModal(modal.id));
+  if ($("#card").classList.contains("active") && e.code === "Space") { e.preventDefault(); showMeaning(); }
+  if ($("#card").classList.contains("active") && e.key === "ArrowRight") next();
+};
+
+load();
+renderAll();
+</script>
+</body>
+</html>
